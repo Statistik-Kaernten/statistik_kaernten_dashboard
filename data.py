@@ -14,7 +14,7 @@ def getAllCombinations(startingYear: int, endYear: int, regions: str):
     all_combinations = pd.DataFrame(list(itertools.product(years, months, regions)),
                                     columns=['year', 'month', 'Tourismusregion']).rename(columns={'year': 'Jahr', 'month': 'MonatId'})    
 
-    all_combinations = all_combinations[(all_combinations['Jahr'].astype(int) > 2003)]# |
+    all_combinations = all_combinations[(all_combinations['Jahr'].astype(int) > 2003)]
 
     return all_combinations
 

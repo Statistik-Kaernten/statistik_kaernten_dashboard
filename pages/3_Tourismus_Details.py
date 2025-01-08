@@ -15,7 +15,7 @@ START_JAHR: int = 2003
 END_JAHR: int = 2025
 
 bdl_at: list[str] = ['Kärnten', 'Wien', 'Tirol', 'Vorarlberg', 'Steiermark', 'Oberösterreich', 'Niederösterreich', 'Salzburg', 'Burgenland']
-bdl_de: list[str] = ['Baden Württemberg', 'Bayern', 'Berlin', 'Mitteldeutschland', 'Norddeutschland', 'Nordrhein-Westfalen', 'Ostdeutschland']
+bdl_de: list[str] = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Mitteldeutschland', 'Norddeutschland', 'Nordrhein-Westfalen', 'Ostdeutschland']
 
 def getPeriode(time: str):
     if (time == 'Kalenderjahr'):
