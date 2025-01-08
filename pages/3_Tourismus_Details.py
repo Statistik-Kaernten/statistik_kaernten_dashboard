@@ -71,7 +71,7 @@ st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
 
 st.sidebar.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-st.sidebar.image("img/logo.png", use_column_width=True)
+st.sidebar.image("img/logo.png", use_container_width=True)
 
 # # # #  GET THE DATA
 if (choosenHerkunftUnterkunft == 'Herkunftsländern'):

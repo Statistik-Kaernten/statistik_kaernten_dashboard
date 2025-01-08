@@ -70,7 +70,7 @@ with st.sidebar:
 
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-    st.image("img/logo.png", use_column_width=True)
+    st.image("img/logo.png", use_container_width=True)
 
 # # # END SIDE BAR # # #
 
