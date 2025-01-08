@@ -62,4 +62,4 @@ with st.sidebar:
 
 
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
-    st.image("img/logo.png", use_column_width=True)
+    st.image("img/logo.png", use_container_width=True)
