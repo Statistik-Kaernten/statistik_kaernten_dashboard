@@ -1,0 +1,134 @@
+id;gemeinde;bezirk;nuts3;bundesland;tourismusregion
+20101;Klagenfurt am Wörthersee;Klagenfurt Stadt;Klagenfurt-Villach;Kärnten;Region Klagenfurt
+20201;Villach;Villach Stadt;Klagenfurt-Villach;Kärnten;Region Villach
+20302;Dellach;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20305;Hermagor-Pressegger See;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20306;Kirchbach;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20307;Kötschach-Mauthen;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20316;St. Stefan im Gailtal;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20320;Gitschtal;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20321;Lesachtal;Hermagor;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20402;Ebenthal in Kärnten;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Region Klagenfurt
+20403;Feistritz im Rosental;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20405;Ferlach;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20409;Grafenstein;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Region Klagenfurt
+20412;Keutschach am See;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20414;Köttmannsdorf;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20415;Krumpendorf am Wörthersee;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20416;Ludmannsdorf;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20417;Maria Rain;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20418;Maria Saal;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Region Klagenfurt
+20419;Maria Wörth;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20421;Moosburg;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20424;Pörtschach am Wörther See;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20425;Poggersdorf;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Region Klagenfurt
+20428;St. Margareten im Rosental;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20432;Schiefling am Wörthersee;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20435;Techelsberg am Wörther See;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20441;Zell;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20442;Magdalensberg;Klagenfurt Land;Klagenfurt-Villach;Kärnten;Kärnten-Mitte
+20501;Althofen;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20502;Brückl;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20503;Deutsch-Griffen;St. Veit an der Glan;Unterkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20504;Eberstein;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20505;Friesach;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20506;Glödnitz;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20508;Gurk;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20509;Guttaring;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20511;Hüttenberg;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20512;Kappel am Krappfeld;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20513;Klein St. Paul;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20515;Liebenfels;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20518;Metnitz;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20519;Micheldorf;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20520;Mölbling;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20523;St. Georgen am Längsee;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20527;St. Veit an der Glan;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20530;Straßburg;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20531;Weitensfeld im Gurktal;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20534;Frauenstein;St. Veit an der Glan;Unterkärnten;Kärnten;Kärnten-Mitte
+20601;Bad Kleinkirchheim;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20602;Baldramsdorf;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20603;Berg im Drautal;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20604;Dellach im Drautal;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20605;Großkirchheim;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20607;Flattach;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20608;Gmünd in Kärnten;Spittal an der Drau;Oberkärnten;Kärnten;Katschberg/Lieser- und Maltatal
+20609;Greifenburg;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20610;Heiligenblut am Großglockner;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20611;Irschen;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20613;Kleblach-Lind;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20616;Lendorf;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20618;Mallnitz;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20619;Malta;Spittal an der Drau;Oberkärnten;Kärnten;Katschberg/Lieser- und Maltatal
+20620;Millstatt am See;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20622;Mörtschach;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20624;Mühldorf;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20625;Oberdrauburg;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20627;Obervellach;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20630;Radenthein;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20631;Rangersdorf;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20632;Rennweg am Katschberg;Spittal an der Drau;Oberkärnten;Kärnten;Katschberg/Lieser- und Maltatal
+20633;Sachsenburg;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20634;Seeboden am Millstätter See;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20635;Spittal an der Drau;Spittal an der Drau;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20636;Stall;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20637;Steinfeld;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20638;Trebesing;Spittal an der Drau;Oberkärnten;Kärnten;Katschberg/Lieser- und Maltatal
+20639;Weißensee;Spittal an der Drau;Oberkärnten;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20640;Winklern;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20642;Krems in Kärnten;Spittal an der Drau;Oberkärnten;Kärnten;Katschberg/Lieser- und Maltatal
+20643;Lurnfeld;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20644;Reißeck;Spittal an der Drau;Oberkärnten;Kärnten;Hohe Tauern – die Nationalpark Region in Kärnten
+20701;Afritz am See;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20702;Arnoldstein;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20703;Arriach;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20705;Bad Bleiberg;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20707;Feistritz an der Gail;Villach Land;Klagenfurt-Villach;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20708;Feld am See;Villach Land;Klagenfurt-Villach;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20710;Ferndorf;Villach Land;Klagenfurt-Villach;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20711;Finkenstein am Faaker See;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20712;Fresach;Villach Land;Klagenfurt-Villach;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+20713;Hohenthurn;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20719;Nötsch im Gailtal;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20720;Paternion;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20721;Rosegg;Villach Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20722;St. Jakob im Rosental;Villach Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20723;Stockenboi;Villach Land;Klagenfurt-Villach;Kärnten;Nassfeld – Pressegger See/Lesachtal/Weissensee
+20724;Treffen am Ossiacher See;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20725;Velden am Wörther See;Villach Land;Klagenfurt-Villach;Kärnten;Wörthersee/Rosental
+20726;Weißenstein;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20727;Wernberg;Villach Land;Klagenfurt-Villach;Kärnten;Region Villach
+20801;Bleiburg;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20802;Diex;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20803;Eberndorf;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20804;Eisenkappel-Vellach;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20805;Feistritz ob Bleiburg;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20806;Gallizien;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20807;Globasnitz;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20808;Griffen;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20810;Neuhaus;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20812;Ruden;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20813;St. Kanzian am Klopeiner See;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20815;Sittersdorf;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20817;Völkermarkt;Völkermarkt;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20901;Bad St. Leonhard im Lavanttal;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20905;Frantschach-St. Gertraud;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20909;Lavamünd;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20911;Preitenegg;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20912;Reichenfels;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20913;St. Andrä;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20914;St. Georgen im Lavanttal;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20918;St. Paul im Lavanttal;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+20923;Wolfsberg;Wolfsberg;Unterkärnten;Kärnten;Klopeiner See – Südkärnten/Lavanttal
+21001;Albeck;Feldkirchen;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+21002;Feldkirchen in Kärnten;Feldkirchen;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+21003;Glanegg;Feldkirchen;Oberkärnten;Kärnten;Kärnten-Mitte
+21004;Gnesau;Feldkirchen;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+21005;Himmelberg;Feldkirchen;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+21006;Ossiach;Feldkirchen;Oberkärnten;Kärnten;Region Villach
+21007;Reichenau;Feldkirchen;Oberkärnten;Kärnten;Bad Kleinkirchheim/Millstätter See/Nockberge
+21008;St. Urban;Feldkirchen;Oberkärnten;Kärnten;Kärnten-Mitte
+21009;Steindorf am Ossiacher See;Feldkirchen;Oberkärnten;Kärnten;Region Villach
+21010;Steuerberg;Feldkirchen;Oberkärnten;Kärnten;Kärnten-Mitte
+99999;unbekannt;unbekannt;unbekannt;unbekannt;

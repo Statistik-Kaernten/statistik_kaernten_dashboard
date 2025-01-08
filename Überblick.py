@@ -1,0 +1,65 @@
+# DASHBOARD der Landesstelle für Statistik
+# Amt der Kärntner Landesregierung
+# BETA-Version 0.1.0 vom 08.01.2025
+# erstellt von Martin Writz, BSc.
+
+
+# ÜBERBLICK SEITE des Dashboards
+import streamlit as st
+
+## PAGE CONFIG
+st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide")
+
+from custom import *
+from style import insert_styling
+from PIL import Image, ImageOps
+
+
+def colored_box(label, bgcolor, text, textcolor, bordercolor):
+    # Define the CSS styles for the box
+    box_style = f"""
+        background-color: {bgcolor}; 
+        padding: 20px; 
+        border-radius: 5px; 
+        border: 2px solid {bordercolor};  /* White border with a thickness of 2px */
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);  /* Optional: Adds a subtle shadow for better visibility */
+        text-align: center;  /* Center-aligns the text within the box */
+    """
+    
+    # Render the box with Streamlit
+    st.markdown(f"""
+        <div style="{box_style}">
+            <h2 style="color: {textcolor}; margin: 0;">{label}</h2>
+            <p style="margin: 0; color: {textcolor}"><font size="5">{text}</font></p>
+        </div>
+        """, unsafe_allow_html=True)
+
+## CUSTOM CSS
+st.markdown(get_custom_css(), unsafe_allow_html=True)
+
+insert_styling(250, 191, 116, 1, 255, 255, 255, 1)
+
+st.markdown(f"""<h1>Dashboard der Landesstelle für Statistik</h1>""", unsafe_allow_html=True)
+st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Landes Kärnten</h2>""", unsafe_allow_html=True)
+
+col3, col4 = st.columns(2)
+with col3:
+    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem November des Vorjahres errechnet sich bei den Ankünften eine Steierung von 9,73 % und bei den Übernachtungen ein Plus von 1,68 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,01 Nächtigungen.", "black", "white")
+
+with st.sidebar:
+
+    cover_img = ImageOps.expand(Image.open("img/cover_hb.PNG"), border=4, fill='white')
+    cover_img = cover_img.resize((289, 429))
+    st.image(cover_img)
+               
+    st.markdown("""
+    <a href="https://www.ktn.gv.at/DE/repos/files/ktn.gv.at/Abteilungen/Abt1/Dateien/PDF/Statistik/Publikationen%5fStat/Statistisches%5fHandbuch/2024%5f10%5f14%5fHandbuch%5fcomp.pdf%282%29?exp=1541901&fps=feeace6905a30e9570976dd453422acaad75e186" target="_blank">
+        <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+            Download
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
+
+
+    st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
+    st.image("img/logo.png", use_column_width=True)
