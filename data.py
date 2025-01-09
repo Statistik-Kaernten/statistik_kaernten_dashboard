@@ -145,19 +145,24 @@ def calcDifference(df: pd.DataFrame, distance_for_calc_diff: int) -> pd.DataFram
     df['Veränderung Ankünfte'] =  round(df['Ankünfte'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
-    
+    df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))
+
     df['Veränderung Übernachtungen'] = round(df['Übernachtungen'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Übernachtungen']  = df['Veränderung Übernachtungen'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
+    df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
     
     df['Durchschnittliche Verweildauer'] = round(df['Übernachtungen']/df['Ankünfte'], 2)
     df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda x: "N/A" if not isinstance(x, float) else x)
+    df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].astype(str)
+    df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
+    print(df)
     return df
 
 @cache_data                        
 def load_data(fileName) -> pd.DataFrame:
-    df = pd.read_csv(f'data/{fileName}', sep=';', decimal=',')
-    df.rename(columns={'jahr': 'Jahr', 'monat': 'Monat', 'tourismusregion': 'Tourismusregion', 'tourismusjahr': 'Tourismusjahr', 
+    df = pd.read_csv(f'data/{fileName}', sep=';', decimal=',', thousands='.')
+    df.rename(columns={'jahr': 'Jahr', 'monat': 'Monat', 'tourismusregion': 'Tourismusregion', 'tourismusjahr': 'Tourismusjahr',
                        'tourismushalbjahr': 'Tourismushalbjahr', 'ankuenfte': 'Ankünfte', 'uebernachtungen': 'Übernachtungen',
                        'unterkunft_6': 'Unterkunft', 'herkunft_1': 'Herkunft', 'id': 'Gkz', 'gemeinde': 'Gemeinde',
                        'bezirk': 'Bezirk', 'nuts3': 'Nuts3', 'bundesland': 'Bundesland', 'geschlecht': 'Geschlecht', 'alter': 'Alter',

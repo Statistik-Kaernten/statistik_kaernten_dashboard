@@ -12,6 +12,14 @@ from style import insert_styling
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
+# # # SESSION STATES # # #
+if 'start_year' not in st.session_state:
+    st.session_state.start_year=2015
+if 'end_year' not in st.session_state:
+    st.session_state.end_year=2025
+
+st.write(st.session_state.start_year, st.session_state.end_year)
+
 def getPeriode(time: str):
     if (time == 'Tourismusjahr'):
         return 'Jahr'
@@ -62,11 +70,16 @@ with st.sidebar:
     selected_jahre: int = st.slider("Startjahr",
         min_value=START_JAHR,
         max_value=END_JAHR-1,
-        value=(2014, END_JAHR),
+        value=(END_JAHR-10, END_JAHR),
         step=1)
-   
-    select_start_jahr: int = selected_jahre[0]
-    select_end_jahr: int = selected_jahre[1]
+
+
+    st.session_state.start_year = selected_jahre[0]
+    st.session_state.end_year = selected_jahre[1]
+    select_start_jahr: int = st.session_state.start_year
+    select_end_jahr: int = st.session_state.end_year
+
+
 
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
@@ -207,4 +220,9 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 st.write(f"### Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
-st.dataframe(df)
+#df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))#.replace('.', ',')#.apply(lambda x: f'{x:,.2f}'.replace(',', ' ').replace('.', ','))
+#df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
+#df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
+#print(df)
+st.dataframe(df, column_config={"Ankünfte": st.column_config.NumberColumn(format="%f"),
+                                "Übernachtungen": st.column_config.NumberColumn(format="%f")}, hide_index=True)
