@@ -23,7 +23,7 @@ def getPeriode(time: str):
         return 0
     
 # CONSTANTS
-START_JAHR: int = 2003
+START_JAHR: int = 2004
 END_JAHR: int = 2025
 
 color_palette = ['#003783', 
