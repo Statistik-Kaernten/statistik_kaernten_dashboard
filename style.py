@@ -25,7 +25,7 @@ def insert_styling(bgr: int, bgg: int, bgb: int, bgAlpha: int, sbr: int, sbg: in
             background-attachment: fixed;
             /*background-color: rgba(255, 255, 255, 1);*/ /* White color with 70% opacity */
             background-blend-mode: normal; /* Overlay to mix background color and image */
-          /*  z-index: -1;*/
+          /*  z-index: -1;*/ /* causing issues with random table in the top left corner */
         }}
         </style>
         """,
@@ -58,13 +58,13 @@ def insert_styling(bgr: int, bgg: int, bgb: int, bgAlpha: int, sbr: int, sbg: in
 # # # END BACK GROUND COLOR  # # # 
 
 # # # FIXED SIEBAR WIDTH # # #
-#    st.markdown(
-#    """
-#    <style>
-#        section[data-testid="stSidebar"] {
-#            width: 400px !important; # Set the width to your desired value
-#        }
-#    </style>
-#    """,
-#    unsafe_allow_html=True,
-#)
+    st.markdown(
+    """
+    <style>
+        section[data-testid="stSidebar"] {
+            width: 400px !important; # Set the width to your desired value
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)

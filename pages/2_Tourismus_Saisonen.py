@@ -18,7 +18,7 @@ if 'start_year' not in st.session_state:
 if 'end_year' not in st.session_state:
     st.session_state.end_year=2025
 
-st.write(st.session_state.start_year, st.session_state.end_year)
+#st.write(st.session_state.start_year, st.session_state.end_year)
 
 def getPeriode(time: str):
     if (time == 'Tourismusjahr'):
@@ -224,5 +224,5 @@ if 'Jahr' in df.columns:
 #df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
 #df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
 #print(df)
-st.dataframe(df, column_config={"Ankünfte": st.column_config.NumberColumn(format="%f"),
-                                "Übernachtungen": st.column_config.NumberColumn(format="%f")}, hide_index=True)
+st.dataframe(df)#, column_config={"Ankünfte": st.column_config.NumberColumn(format="%f"),
+                #                "Übernachtungen": st.column_config.NumberColumn(format="%f")}, hide_index=True)

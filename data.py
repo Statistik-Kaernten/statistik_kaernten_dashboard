@@ -145,18 +145,18 @@ def calcDifference(df: pd.DataFrame, distance_for_calc_diff: int) -> pd.DataFram
     df['Veränderung Ankünfte'] =  round(df['Ankünfte'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
-    df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))
+    #df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))
 
     df['Veränderung Übernachtungen'] = round(df['Übernachtungen'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Übernachtungen']  = df['Veränderung Übernachtungen'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
-    df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
+    #df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
     
     df['Durchschnittliche Verweildauer'] = round(df['Übernachtungen']/df['Ankünfte'], 2)
     df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda x: "N/A" if not isinstance(x, float) else x)
-    df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].astype(str)
-    df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
-    print(df)
+    #df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].astype(str)
+    #df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
+    #print(df)
     return df
 
 @cache_data                        
