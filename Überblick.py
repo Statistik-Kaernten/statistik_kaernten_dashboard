@@ -44,7 +44,7 @@ st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Land
 
 col3, col4 = st.columns(2)
 with col3:
-    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem November des Vorjahres errechnet sich bei den Ankünften eine Steierung von 9,73 % und bei den Übernachtungen ein Plus von 1,68 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,01 Nächtigungen.", "black", "white")
+    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem November des Vorjahres errechnet sich bei den Ankünften eine Steigerung von 9,73 % und bei den Übernachtungen ein Plus von 1,68 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,01 Nächtigungen.", "black", "white")
 
 with st.sidebar:
 
