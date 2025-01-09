@@ -136,7 +136,7 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
         y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', title='Anzahl'), 
         color=alt.Color(f'{type}:N', 
                         title=f'{type}', 
-                        legend=alt.Legend(orient='right', 
+                        legend=alt.Legend(orient='bottom', 
                                           columns=getColumnLength(),
                                           symbolLimit=getSymbolLimit()), 
                         scale=alt.Scale(range=land_ktn_palette)),
@@ -169,7 +169,7 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
     color=alt.Color(
         f'{type}:N', 
         title=f'{type}', 
-        legend=alt.Legend(orient='right', 
+        legend=alt.Legend(orient='bottom', 
                             columns=getColumnLength(),
                             symbolLimit=getSymbolLimit()), 
         scale=alt.Scale(range=land_ktn_palette)
