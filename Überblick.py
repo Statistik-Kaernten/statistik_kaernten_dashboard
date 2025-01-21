@@ -2,7 +2,10 @@
 # Amt der Kärntner Landesregierung
 # BETA-Version 0.1.0 vom 08.01.2025
 # erstellt von Martin Writz, BSc.
-
+#
+# feel free to contribute and 
+# report bugs to martin.writz@ktn.gv.at 
+# or commit a pull request directly
 
 # ÜBERBLICK SEITE des Dashboards
 import streamlit as st
@@ -44,7 +47,7 @@ st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Land
 
 col3, col4 = st.columns(2)
 with col3:
-    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem November des Vorjahres errechnet sich bei den Ankünften eine Steigerung von 9,73 % und bei den Übernachtungen ein Plus von 1,68 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,01 Nächtigungen.", "black", "white")
+    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem Dezember des Jahres 2023 errechnet sich bei den Ankünften eine Steigerung von 5,1 % und bei den Übernachtungen ein Plus von 9,1 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,5 Nächtigungen.", "black", "white")
 
 with st.sidebar:
 
