@@ -68,7 +68,7 @@ with st.sidebar:
 # # # END SIDE BAR # # #
 
 
-st.write('## Betriebe / Betten')
+st.write(f'## {choosenArt}')
 
 # Tourismus nach Tourismusregionen
 df = get_data('t_tourismus4.csv', select_start_jahr, select_end_jahr, 'Tourismusregion', region)
