@@ -1,11 +1,12 @@
-# DASHBOARD der Landesstelle für Statistik
+# Dashboard der Landesstelle für Statistik
 # Amt der Kärntner Landesregierung
-# BETA-Version 0.1.0 vom 08.01.2025
+# BETA-Version 0.2.0 vom 08.01.2025
 # erstellt von Martin Writz, BSc.
-#
-# feel free to contribute and 
-# report bugs to martin.writz@ktn.gv.at 
-# or commit a pull request directly
+
+# please report bugs to martin.writz@ktn.gv.at or
+# abt1.statistik@ktn.gv.at 
+# feel free to contribute or
+# to commit a pull request directly
 
 # ÜBERBLICK SEITE des Dashboards
 import streamlit as st
@@ -42,15 +43,7 @@ st.markdown(get_custom_css(), unsafe_allow_html=True)
 
 insert_styling(250, 191, 116, 1, 255, 255, 255, 1)
 
-st.markdown(f"""<h1>Dashboard der Landesstelle für Statistik</h1>""", unsafe_allow_html=True)
-st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Landes Kärnten</h2>""", unsafe_allow_html=True)
-
-col3, col4 = st.columns(2)
-with col3:
-    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem Dezember des Jahres 2023 errechnet sich bei den Ankünften eine Steigerung von 5,1 % und bei den Übernachtungen ein Plus von 9,1 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,5 Nächtigungen.", "black", "white")
-
 with st.sidebar:
-
     cover_img = ImageOps.expand(Image.open("img/cover_hb.PNG"), border=4, fill='white')
     cover_img = cover_img.resize((289, 429))
     st.image(cover_img)
@@ -66,3 +59,18 @@ with st.sidebar:
 
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
     st.image("img/logo.png", width=300, use_container_width=False)
+
+    with st.expander("Info"):
+        st.write('''
+            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 0.2.0 vom 08.01.2025, erstellt von Martin Writz, BSc.
+            
+            please report bugs to martin.writz@ktn.gv.at or abt1.statistik@ktn.gv.at, feel free to contribute or to commit a pull request directly
+        ''')
+
+st.markdown(f"""<h1>Dashboard der Landesstelle für Statistik</h1>""", unsafe_allow_html=True)
+st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Landes Kärnten</h2>""", unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem Dezember des Jahres 2023 errechnet sich bei den Ankünften eine Steigerung von 5,1 % und bei den Übernachtungen ein Plus von 9,1 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 3,5 Nächtigungen.", "black", "white")

@@ -62,6 +62,7 @@ with st.sidebar:
 
     options2 = getSubRegion('Tourismusregion')
     options2.append('Ganz Kärnten')
+    options2.append('Alle Tourismusregionen')
     
     region = st.selectbox("Tourismusregion", 
                             options2, 
@@ -108,34 +109,62 @@ if (choosenAnkuenfteUebernachtungen == 'Ankünfte'):
 elif(choosenAnkuenfteUebernachtungen == 'Übernachtungen'):
     diff: str = 'Veränderung Übernachtungen'
 
+# YEAR AND DIFF LOGIC
 if (periodeDf == 'SHJ'):
     df = df[df['Tourismushalbjahr'] == periodeDf]
     year = 'Tourismusjahr'
-    distance_for_calc_diff = 6
-elif (periodeDf == 'WHJ' or periodeDf == 'Jahr'):
-    distance_for_calc_diff = 12
-    if (periodeDf == 'WHJ'):
+    if (region == 'Alle Tourismusregionen'):
+        distance_for_calc_diff = 6*9
+    else:
         distance_for_calc_diff = 6
+
+elif (periodeDf == 'WHJ' or periodeDf == 'Jahr'):
+    if (region == 'Alle Tourismusregionen'):
+        distance_for_calc_diff = 12*9
+    else: 
+        distance_for_calc_diff = 12
+    if (periodeDf == 'WHJ'):
+        if (region == 'Alle Tourismusregionen'):
+            distance_for_calc_diff = 6*9
+        else:
+            distance_for_calc_diff = 6
         df = df[df['Tourismushalbjahr'] == periodeDf]
     year = 'Tourismusjahr'
-if (choosenMonatSaison == 'Saison'):
-    distance_for_calc_diff = 1
 
+if (choosenMonatSaison == 'Saison'):
+    if (region == 'Alle Tourismusregionen'):
+        distance_for_calc_diff = 9
+    else:
+        distance_for_calc_diff = 1
+
+elif (choosenMonatSaison == 'Saison'):
+    if(region == 'Ganz Kärnten'):
+        distance_for_calc_diff = 1
+    elif (len(df['Tourismusregion'].unique() != 1)):
+        distance_for_calc_diff = 9
+    else:
+        distance_for_calc_diff = 1
+
+year = 'Tourismusjahr'
+# DATAFRAME LOGIC
 if ((choosenMonatSaison == 'Saison') and (time != 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Tourismusjahr', 'Tourismushalbjahr', 'Tourismusregion']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Tourismusjahr', 'Tourismushalbjahr']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+
 elif((choosenMonatSaison == 'Saison') and (time == 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Tourismusjahr', 'Tourismusregion']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Tourismusjahr']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+
 elif ((choosenMonatSaison == 'Monat') and (time != 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismushalbjahr', 'Tourismusregion', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismushalbjahr', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+
 elif((choosenMonatSaison == 'Monat') and (time == 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismusregion', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
@@ -149,7 +178,7 @@ monats_order_n = ['Jänner', 'Feber', 'März', 'April', 'Mai', 'Juni', 'Juli', '
 if (choosenMonatSaison == 'Monat'): 
     df = calcDifference(df, distance_for_calc_diff)
     df = df[df['Jahr'] >= select_start_jahr-1]
-    df =  df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
+    df = df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
     stacked_bar_chart = alt.Chart(df).mark_bar().encode(
         x=alt.X(f'{year}:O', 
                 title='Jahr'),
@@ -169,6 +198,8 @@ if (choosenMonatSaison == 'Monat'):
                         title='Jahr'), 
             alt.Tooltip('Monat:N', 
                         title='Monat'), 
+            alt.Tooltip('Tourismusregion:N', 
+                        title='Tourismusregion'),
             alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
                         title='Anzahl', 
                         format=','),
@@ -176,8 +207,6 @@ if (choosenMonatSaison == 'Monat'):
                         title='Veränderung zum Vorjahr'),
             alt.Tooltip(f'Durchschnittliche Verweildauer:O', 
                         title='Durchschnittliche Verweildauer')
-
-
         ],
     ).properties(
         width=800,
@@ -187,7 +216,7 @@ if (choosenMonatSaison == 'Monat'):
 # SAISON LOGIC
 else: 
     df = calcDifference(df, distance_for_calc_diff)
-    df = df[1:]
+    #df = df[1:]
     stacked_bar_chart = alt.Chart(df).mark_bar().encode(
         x=alt.X(f'{year}:O', 
                 title='Jahr'),
@@ -198,6 +227,8 @@ else:
         tooltip=[
             alt.Tooltip('Tourismusjahr:O', 
                         title='Tourismusjahr'), 
+            alt.Tooltip('Tourismusregion:N', 
+                        title='Tourismusregion'),
             alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
                         title='Anzahl', 
                         format=','),
@@ -216,13 +247,15 @@ else:
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 # DATA AS CSV PREP
-
 st.write(f"### Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
-#df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))#.replace('.', ',')#.apply(lambda x: f'{x:,.2f}'.replace(',', ' ').replace('.', ','))
-#df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
-#df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
+display_df = df
+#display_df['Ankünfte'] = display_df['Ankünfte'].apply(lambda x: '{:,.0f}'.format(int(x)).replace(',', '.'))
+#display_df['Übernachtungen'] = display_df['Übernachtungen'].apply(lambda x: '{:,.0f}'.format(int(x)).replace(',', '.'))
+#display_df['Veränderung Ankünfte'] = display_df['Veränderung Ankünfte'].apply(lambda x: x.replace('.', ','))#.replace('.', ',')#.apply(lambda x: f'{x:,.2f}'.replace(',', ' ').replace('.', ','))
+#display_df['Veränderung Übernachtungen'] = display_df['Veränderung Übernachtungen'].apply(lambda x: x.replace('.', ','))
+#display_df['Durchschnittliche Verweildauer'] = display_df['Durchschnittliche Verweildauer'].apply(lambda x: str(x).replace('.', ','))
 #print(df)
-st.dataframe(df)#, column_config={"Ankünfte": st.column_config.NumberColumn(format="%f"),
-                #                "Übernachtungen": st.column_config.NumberColumn(format="%f")}, hide_index=True)
+st.dataframe(display_df)#, column_config={"Ankünfte": st.column_config.NumberColumn(format="%.0f"),
+#                                "Übernachtungen": st.column_config.NumberColumn(format="%.0f")}, hide_index=True)

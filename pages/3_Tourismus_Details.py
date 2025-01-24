@@ -47,6 +47,7 @@ with st.sidebar:
 
     options2 = getSubRegion(first_choice)
     options2.append('Ganz Kärnten')
+    #options2.append('Alle Tourismusregionen') #???
     second_choice = 'Ganz Kärnten'
     second_choice = st.selectbox("Tourismusregion:", 
                                     options2, 

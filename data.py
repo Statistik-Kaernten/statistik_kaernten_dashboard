@@ -108,24 +108,51 @@ def getAllCombinations(df: pd.DataFrame) -> pd.DataFrame:
 
 def calcDifference(df: pd.DataFrame, distance_for_calc_diff: int) -> pd.DataFrame:
     def sorting(df: pd.DataFrame) -> pd.DataFrame:
-        if 'Herkunft' in df.columns:
-            df = df.sort_values(['Date', 'Herkunft'])
-        elif 'Unterkunft' in df.columns:
-            df = df.sort_values(['Date', 'Unterkunft'])
-        else:
-            if 'MonatId' in df.columns:
-                df = df.sort_values(['Jahr', 'MonatId'])
-            elif 'Jahr' in df.columns:
-                df = df.sort_values(['Jahr'])
+        if 'Tourismusregion' in df.columns:      
+            if (len(df['Tourismusregion']) != 1):
+                if 'Herkunft' in df.columns:
+                    df = df.sort_values(['Date', 'Herkunft', 'Tourismusregion'])
+                elif 'Unterkunft' in df.columns:
+                    df = df.sort_values(['Date', 'Unterkunft', 'Tourismusregion'])
+                else:
+                    if 'MonatId' in df.columns:
+                        df = df.sort_values(['Jahr', 'MonatId', 'Tourismusregion'])
+                    elif 'Jahr' in df.columns:
+                        df = df.sort_values(['Jahr', 'Tourismusregion'])
+                    else:
+                        df = df.sort_values(['Tourismusjahr', 'Tourismusregion'])
             else:
-                df = df.sort_values(['Tourismusjahr'])
+                if 'Herkunft' in df.columns:
+                    df = df.sort_values(['Date', 'Herkunft'])
+                elif 'Unterkunft' in df.columns:
+                    df = df.sort_values(['Date', 'Unterkunft'])
+                else:
+                    if 'MonatId' in df.columns:
+                        df = df.sort_values(['Jahr', 'MonatId'])
+                    elif 'Jahr' in df.columns:
+                        df = df.sort_values(['Jahr'])
+                    else:
+                        df = df.sort_values(['Tourismusjahr'])
+        else:
+            if 'Herkunft' in df.columns:
+                df = df.sort_values(['Date', 'Herkunft'])
+            elif 'Unterkunft' in df.columns:
+                df = df.sort_values(['Date', 'Unterkunft'])
+            else:
+                if 'MonatId' in df.columns:
+                    df = df.sort_values(['Jahr', 'MonatId'])
+                elif 'Jahr' in df.columns:
+                    df = df.sort_values(['Jahr'])
+                else:
+                    df = df.sort_values(['Tourismusjahr'])
         return df
+    
     try:
         max_year = df['Jahr'].max()
         max_month = df[df['Jahr'] == max_year]['MonatId'].max()
     except:
         pass
-    # get all combinations here and set ankünfte und übernachtungen to zero
+    # get all combinations and set ankünfte und übernachtungen to zero
     if 'Herkunft' in df.columns or 'Unterkunft' in df.columns:
         cols, all_combinations = getAllCombinations(df)
         existing_combinations = df[cols]
@@ -145,18 +172,22 @@ def calcDifference(df: pd.DataFrame, distance_for_calc_diff: int) -> pd.DataFram
     df['Veränderung Ankünfte'] =  round(df['Ankünfte'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
-    #df['Veränderung Ankünfte'] = df['Veränderung Ankünfte'].apply(lambda row: row.replace('.', ','))
 
     df['Veränderung Übernachtungen'] = round(df['Übernachtungen'].pct_change(distance_for_calc_diff).fillna(0) * 100, 2)
     df['Veränderung Übernachtungen']  = df['Veränderung Übernachtungen'].apply(
                                 lambda x: f"+{x:.2f}%" if x > 0 else f"{x:.2f}%" if x < 0 else "N/A")
-    #df['Veränderung Übernachtungen'] = df['Veränderung Übernachtungen'].apply(lambda row: row.replace('.', ','))
     
     df['Durchschnittliche Verweildauer'] = round(df['Übernachtungen']/df['Ankünfte'], 2)
     df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda x: "N/A" if not isinstance(x, float) else x)
-    #df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].astype(str)
-    #df['Durchschnittliche Verweildauer'] = df['Durchschnittliche Verweildauer'].apply(lambda row: row.replace('.', ','))
-    #print(df)
+
+    maxTourismusjahr = '2024/25'
+
+    if 'Monat' in df.columns:
+        pass
+    else:
+        df['Veränderung Ankünfte'] = df.apply(lambda row: 'lfd.' if row['Tourismusjahr'] == maxTourismusjahr else row['Veränderung Ankünfte'], axis=1)
+        df['Veränderung Übernachtungen'] = df.apply(lambda row: 'lfd.' if row['Tourismusjahr'] == maxTourismusjahr else row['Veränderung Übernachtungen'], axis=1)
+        df['Durchschnittliche Verweildauer'] = df.apply(lambda row: 0 if row['Tourismusjahr'] == maxTourismusjahr else row['Durchschnittliche Verweildauer'], axis=1)
     return df
 
 @cache_data                        
@@ -216,7 +247,9 @@ def getList(df: pd.DataFrame, param: str) -> list[str]:
         return list(-1)
 
 def sep_regions(df: pd.DataFrame, second_choice: str) -> pd.DataFrame:
-    if (second_choice != 'Ganz Kärnten'):
+    if (second_choice == 'Alle Tourismusregionen'):
+        df = df
+    elif (second_choice != 'Ganz Kärnten'):
         df = df[df['Tourismusregion'] == second_choice]
     return df
 
@@ -240,7 +273,10 @@ def get_data(param: str, start: int, end: int, first_choice: str, second_choice:
         df = sep_regions(df, second_choice)
         df = addMonthNames(df)
         df = filterTourismusjahr(df, start, end)
-        df.sort_values(by=['Jahr', 'MonatId'], inplace=True)
+        #if (len(df['Tourismusregion'].unique() != 1)):
+        #   df.sort_values(by=['Jahr', 'MonatId', 'Tourismusregion'], inplace=True)
+        #else:
+        #    df.sort_values(by=['Jahr', 'MonatId'], inplace=True)
 
     elif (param == 't_tourismus2.csv' or param == 't_tourismus3.csv'):
         df = sep_regions(df, second_choice)
