@@ -1,13 +1,12 @@
 # Tourismus - Saisonen
-
 import streamlit as st
+
 # PAGE CONFIG
 st.set_page_config(page_title="Tourismus", layout="wide")
 
 import altair as alt
 from data import *
 from custom import *
-
 from style import insert_styling
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
@@ -17,8 +16,6 @@ if 'start_year' not in st.session_state:
     st.session_state.start_year=2015
 if 'end_year' not in st.session_state:
     st.session_state.end_year=2025
-
-#st.write(st.session_state.start_year, st.session_state.end_year)
 
 def getPeriode(time: str):
     if (time == 'Tourismusjahr'):
@@ -74,13 +71,10 @@ with st.sidebar:
         value=(END_JAHR-10, END_JAHR),
         step=1)
 
-
     st.session_state.start_year = selected_jahre[0]
     st.session_state.end_year = selected_jahre[1]
     select_start_jahr: int = st.session_state.start_year
     select_end_jahr: int = st.session_state.end_year
-
-
 
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
@@ -100,7 +94,6 @@ choosenMonatSaison = st.selectbox("Saison/Monat",
                                   monatsaisonvalues, 
                                   index=monatsaisonvalues.index('Monat'),
                                   label_visibility='visible')
-
 
 periodeDf = getPeriode(time)
 
@@ -152,27 +145,45 @@ if ((choosenMonatSaison == 'Saison') and (time != 'Tourismusjahr')):
         df = df.groupby(['Tourismusjahr', 'Tourismushalbjahr', 'Tourismusregion']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Tourismusjahr', 'Tourismushalbjahr']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+        df['Tourismusregion'] = 'Ganz Kärnten'
 
 elif((choosenMonatSaison == 'Saison') and (time == 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Tourismusjahr', 'Tourismusregion']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Tourismusjahr']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+        df['Tourismusregion'] = 'Ganz Kärnten'
 
 elif ((choosenMonatSaison == 'Monat') and (time != 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismushalbjahr', 'Tourismusregion', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismushalbjahr', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+        df['Tourismusregion'] = 'Ganz Kärnten'
+        
 
 elif((choosenMonatSaison == 'Monat') and (time == 'Tourismusjahr')):
     if(region != 'Ganz Kärnten'):
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Tourismusregion', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     else:
         df = df.groupby(['Jahr', 'MonatId', 'Tourismusjahr', 'Monat']).agg({'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+        df['Tourismusregion'] = 'Ganz Kärnten'
 
 monats_order = [11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 monats_order_n = ['Jänner', 'Feber', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+t_region_palette = ['#3a5487', '#5c8c9c', '#c0c4c9', '#eb7e24', '#ca1e32', '#C8602A', '#8C4C22', '#A95C6D', '#F2C278']
+#t_region_palette = ['#D66E30', '#A75E24', '#C55D44', '#F1A54C', '#F49D2D', '#9B5D2B', '#E0A56A', '#9A5736', '#D77A3C']
+#t_region_palette = ['#8C4C22', '#B45F30', '#F19C42', '#F5A623', '#DA5C21', '#B94E0E', '#FF6F26', '#D45C21', '#C8602A']
+#t_region_palette = ['#FF5733', '#FF8D1A', '#FFB84D', '#FF6F61', '#FF7E2D', '#FF9B3D', '#F28D24', '#F47A3C', '#F15C3C']
+#t_region_palette = ['#D4A29C', '#A95C6D', '#C08497', '#F1D0B1', '#F2C8B3', '#8C4D4D', '#D88F88', '#9C4D40', '#D8B4A0']
+#t_region_palette = ['#C0392B', '#F39C12', '#E74C3C', '#F1C40F', '#D35400', '#E67E22', '#C67C47', '#F39C12', '#F47C4D']
+#t_region_palette = ['#FF8C42', '#FF5E13', '#FF6A13', '#F8C21C', '#F49D4B', '#FFB74D', '#D3551F', '#E07A35', '#F58F41']
+#t_region_palette = ['#F4C542', '#F1A54C', '#F1B748', '#F2C65C', '#F29F28', '#F4A625', '#F1B14B', '#F5C759', '#F49E21']
+#t_region_palette = ['#D36B1F', '#F29257', '#E86A42', '#D2491E', '#D78E55', '#F3A642', '#D55D1E', '#FF7D2A', '#F15A3A']
+#t_region_palette = ['#9E2A2F', '#B84B2B', '#DC5422', '#E94B3C', '#F1C40F', '#F39C12', '#FF6B2D', '#D35400', '#F2C278']
+#t_region_palette = ['#3288bd', '#f46d43', '#66c2a5', '#fee08b', '#e6f598', '#abdda4', '#f46d43', '#ffffbf', '#d53e4f']
+#t_region_palette = ['#30b0e0', '#d2d2cb', '#4d695d', '#83a79d', '#dae8e5', '#a1cde5', '#bfdeee', '#bc252d', '#abdda4']
+
 
 # MONATS LOGIC
 if (choosenMonatSaison == 'Monat'): 
@@ -214,16 +225,24 @@ if (choosenMonatSaison == 'Monat'):
     )
 
 # SAISON LOGIC
+
 else: 
     df = calcDifference(df, distance_for_calc_diff)
-    #df = df[1:]
+    df['filter'] = df['Tourismusjahr'].str[:4].astype(int)
+    df = df[~(df['filter'] < select_start_jahr-1)]
+    df.drop('filter', inplace=True, axis=1)
     stacked_bar_chart = alt.Chart(df).mark_bar().encode(
         x=alt.X(f'{year}:O', 
                 title='Jahr'),
         y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', 
-                title='Anzahl', 
-                sort=monats_order
+                title='Anzahl'
                 ),
+        color=alt.Color(
+            'Tourismusregion:N', 
+            title='Tourismusregion', 
+            scale=alt.Scale(range=t_region_palette),
+            legend=None
+        ),
         tooltip=[
             alt.Tooltip('Tourismusjahr:O', 
                         title='Tourismusjahr'), 
@@ -250,12 +269,5 @@ st.altair_chart(stacked_bar_chart, use_container_width=True)
 st.write(f"### Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
-display_df = df
-#display_df['Ankünfte'] = display_df['Ankünfte'].apply(lambda x: '{:,.0f}'.format(int(x)).replace(',', '.'))
-#display_df['Übernachtungen'] = display_df['Übernachtungen'].apply(lambda x: '{:,.0f}'.format(int(x)).replace(',', '.'))
-#display_df['Veränderung Ankünfte'] = display_df['Veränderung Ankünfte'].apply(lambda x: x.replace('.', ','))#.replace('.', ',')#.apply(lambda x: f'{x:,.2f}'.replace(',', ' ').replace('.', ','))
-#display_df['Veränderung Übernachtungen'] = display_df['Veränderung Übernachtungen'].apply(lambda x: x.replace('.', ','))
-#display_df['Durchschnittliche Verweildauer'] = display_df['Durchschnittliche Verweildauer'].apply(lambda x: str(x).replace('.', ','))
-#print(df)
-st.dataframe(display_df)#, column_config={"Ankünfte": st.column_config.NumberColumn(format="%.0f"),
-#                                "Übernachtungen": st.column_config.NumberColumn(format="%.0f")}, hide_index=True)
+
+st.dataframe(df)
