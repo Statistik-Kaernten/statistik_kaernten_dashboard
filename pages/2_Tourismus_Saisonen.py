@@ -80,6 +80,11 @@ with st.sidebar:
 
     st.image("img/logo.png", use_container_width=True)
 
+    with st.expander("Info"):
+        st.write('''
+            Infobox
+        ''')
+
 # # # END SIDE BAR # # #
 
 st.write('## Tourismus - Saisonen')
@@ -266,8 +271,20 @@ else:
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 # DATA AS CSV PREP
-st.write(f"### Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.write(f"### Gefilterte Daten - {region}")
+    st.dataframe(df)
+with col2:
+    st.write(f"### Gemeinden - {region}")
+    st.dataframe()
 
-st.dataframe(df)
+#st.markdown("""
+#    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus1.csv" download target="_blank">
+#        <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+#            Download alle Daten
+#        </button>
+#    </a>
+#    """, unsafe_allow_html=True)

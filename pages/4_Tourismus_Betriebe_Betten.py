@@ -24,7 +24,7 @@ def getPeriode(time: str):
     
 # CONSTANTS
 START_JAHR: int = 1998
-END_JAHR: int = 2023
+END_JAHR: int = 2024
 
 
 color_palette = get_ktn_palette()
@@ -64,6 +64,11 @@ with st.sidebar:
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
     st.image("img/logo.png", use_container_width=True)
+
+    with st.expander("Info"):
+        st.write('''
+            Infobox
+        ''')
 
 # # # END SIDE BAR # # #
 
@@ -119,7 +124,15 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 # DATA AS CSV PREP
-st.write(f"### Daten - {region}")
+st.write(f"### Gefilterte Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
 st.dataframe(df)
+
+#st.markdown("""
+#    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus2.csv" download target="_blank">
+#        <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+#            Download alle Daten
+#        </button>
+#    </a>
+#    """, unsafe_allow_html=True)

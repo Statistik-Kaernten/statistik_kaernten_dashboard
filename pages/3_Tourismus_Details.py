@@ -64,15 +64,20 @@ with st.sidebar:
     select_start_jahr: int = selected_jahre[0]
     select_end_jahr: int = selected_jahre[1]
 
+    st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
+
+    st.image("img/logo.png", use_container_width=True)
+
+    with st.expander("Info"):
+        st.write('''
+            Infobox
+        ''')
+
 # # # END REGIONS-AUSWAHL # # #
 
 
 st.write(f'## Tourismus nach {choosenHerkunftUnterkunft}')
 st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
-
-st.sidebar.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
-
-st.sidebar.image("img/logo.png", use_container_width=True)
 
 # # # #  GET THE DATA
 if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
@@ -205,8 +210,24 @@ if (options!=[]):
         st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 if (options!=[]):
-    st.write(f"### Daten - {second_choice} nach {choosenHerkunftUnterkunft}")
+    st.write(f"### Gefilterte Daten - {second_choice} nach {choosenHerkunftUnterkunft}")
     df.drop(columns=['Date'], inplace=True)
     if 'Jahr' in df.columns: 
         df['Jahr'] = df['Jahr'].astype(str)
     st.dataframe(df, hide_index=True)
+
+#st.markdown("""
+#    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus2.csv" download target="_blank">
+#        <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+#            Download alle Daten Herkunftsländer
+#        </button>
+#    </a>
+#    """, unsafe_allow_html=True)
+
+#st.markdown("""
+#    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus3.csv" download target="_blank">
+#        <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
+#            Download alle Daten Unterkunftsarten
+#        </button>
+#    </a>
+#    """, unsafe_allow_html=True)

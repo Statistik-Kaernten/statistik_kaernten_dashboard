@@ -8,6 +8,7 @@ import numpy as np
 pd.options.mode.copy_on_write = True
 
 # not needed
+@DeprecationWarning
 def getAllCombinations(startingYear: int, endYear: int, regions: str):
     years = range(startingYear, endYear +1)
     months = range(1, 13)
@@ -31,6 +32,7 @@ def fillEmptyFields(df: pd.DataFrame, startingYear: int, endYear: int) -> pd.Dat
     return merged_df
 
 # Too calc intensive, inefficient, slow
+@DeprecationWarning
 def calculate_yearly_difference(df: pd.DataFrame, startYear: int, endYear: int, year_col: str, month_col: str, type_col: str, herkunft_unterkunft_col: str, value_col: str) -> pd.DataFrame:
     '''
     Calculate the difference between values for a given month from the current year and the previous year.
@@ -200,7 +202,6 @@ def load_data(fileName) -> pd.DataFrame:
                        'pop': 'Anzahl'}, inplace=True)
     return df
 
-
 def getSelectionItems() -> pd.DataFrame:
     df = load_data('l_gkz.csv')
     df = df[df['Gkz'] != 99999]
@@ -299,8 +300,9 @@ def get_data(param: str, start: int, end: int, first_choice: str, second_choice:
         df = filterJahr(df, start, end)
         df = sep_regions(df, second_choice)
         if (second_choice == 'Ganz Kärnten'):
-            df = df[['Jahr', 'Tourismushalbjahr', 'Unterkunft', 'Art', 'Anzahl']]
-            df = df.groupby(['Jahr', 'Tourismushalbjahr', 'Unterkunft', 'Art']).sum().reset_index() 
+            df['Tourismusregion'] = 'Ganz Kärnten'
+            df = df[['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art', 'Anzahl']]
+            df = df.groupby(['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art']).sum().reset_index() 
     
     if (param == 't_bev1.csv'):
         df = filterJahr(df, start, end)
@@ -313,4 +315,3 @@ def get_data_with_gkz_list(param: str, start: int, end: int, gkz_list = list[str
         df = filterJahr(df, start, end)
         df['Altersgruppe'] = df.apply(lambda row: 'A' if row['Alter'] < 15 else 'C' if row['Alter'] > 64 else 'B', axis=1)
     return df
-
