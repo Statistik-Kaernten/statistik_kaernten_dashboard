@@ -267,9 +267,14 @@ def filterJahr(df: pd.DataFrame, start: int, end: int) -> pd.DataFrame:
     df = df[df['Jahr'].astype(int) <= end]
     return df
 
+
+def getGemeindeListe(select: str):
+    gkz = getSelectionItems()
+    #gkz = gkz[gkz['Tourismusregion'] == select]['Gemeinde']
+    return gkz[gkz['Tourismusregion'] == select]['Gemeinde']
+
 def get_data(param: str, start: int, end: int, first_choice: str, second_choice: str, zaehlstelle: str = None) -> pd.DataFrame:
     df: pd.DataFrame = load_data(param)
-
     if (param == 't_tourismus1.csv'):
         df = sep_regions(df, second_choice)
         df = addMonthNames(df)
@@ -315,3 +320,7 @@ def get_data_with_gkz_list(param: str, start: int, end: int, gkz_list = list[str
         df = filterJahr(df, start, end)
         df['Altersgruppe'] = df.apply(lambda row: 'A' if row['Alter'] < 15 else 'C' if row['Alter'] > 64 else 'B', axis=1)
     return df
+
+if __name__ == '__main__':
+    df = getGemeindeListe('Region Klagenfurt')
+    print(df)
