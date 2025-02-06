@@ -130,11 +130,22 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
 # DISPLAY CHART
 st.altair_chart(stacked_bar_chart, use_container_width=True)
 
-# DATA AS CSV PREP
-st.write(f"### Gefilterte Daten - {region}")
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
-st.dataframe(df)
+
+# DATA AS CSV PREP
+st.write(f"## {region}")
+
+col1, col2 = st.columns([0.7, 0.3])
+
+with col1:
+    st.write(f"### Gefilterte Daten")
+    st.dataframe(df, use_container_width=True, hide_index=True)#, column_order=('Jahr', 'Tourismusjahr', 'MonatId', 'Monat', 'Ankünfte', 'Übernachtungen', 'Veränderung Ankünfte', 'Veränderung Übernachtungen'))
+with col2:
+    st.write(f"### Gemeinden")
+    gemeinden = getGemeindeListe(region)
+    if(len(gemeinden) != 0):
+        st.dataframe(gemeinden, hide_index=True, use_container_width=True)
 
 #st.markdown("""
 #    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus2.csv" download target="_blank">
