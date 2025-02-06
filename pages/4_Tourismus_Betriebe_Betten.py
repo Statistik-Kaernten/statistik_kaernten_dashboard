@@ -23,7 +23,7 @@ def getPeriode(time: str):
         return 0
     
 # CONSTANTS
-START_JAHR: int = 1998
+START_JAHR: int = 2008
 END_JAHR: int = 2024
 
 
@@ -88,6 +88,11 @@ elif (periodeDf == 'Tourismusjahr'):
 
 df = df[df['Art'] == choosenArt]
 
+df = df.sort_values(['Jahr', 'Unterkunft'])
+df['Veränderung Vorjahr'] =  round(df['Anzahl'].pct_change(len(df[df['Jahr'] == END_JAHR])).fillna(0) * 100, 2)
+df['Veränderung Vorjahr'] = df['Veränderung Vorjahr'].apply(
+                                lambda x: f"+{x:.2f}%" if x >= 0 else f"{x:.2f}%" if x < 0 else "N/A")
+
 stacked_bar_chart = alt.Chart(df).mark_bar().encode(
     x=alt.X(f'Jahr:O', 
             title='Jahr'),
@@ -109,6 +114,8 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
                     title='Tourismusregion'),
         alt.Tooltip('Unterkunft:N', 
                     title='Unterkunft'),
+        alt.Tooltip('Veränderung Vorjahr:N', 
+                    title='Veränderung Vorjahr'),
         alt.Tooltip('Art:N', 
                     title='Art'),
         alt.Tooltip(f'Anzahl:Q', 
