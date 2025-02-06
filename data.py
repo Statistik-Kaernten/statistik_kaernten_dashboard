@@ -270,7 +270,6 @@ def filterJahr(df: pd.DataFrame, start: int, end: int) -> pd.DataFrame:
 
 def getGemeindeListe(select: str):
     gkz = getSelectionItems()
-    #gkz = gkz[gkz['Tourismusregion'] == select]['Gemeinde']
     return gkz[gkz['Tourismusregion'] == select]['Gemeinde']
 
 def get_data(param: str, start: int, end: int, first_choice: str, second_choice: str, zaehlstelle: str = None) -> pd.DataFrame:
