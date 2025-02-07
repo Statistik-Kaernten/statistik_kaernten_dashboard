@@ -146,6 +146,8 @@ with col2:
     gemeinden = getGemeindeListe(region)
     if(len(gemeinden) != 0):
         st.dataframe(gemeinden, hide_index=True, use_container_width=True)
+    else:
+        st.write(f"#### {region}")
 
 #st.markdown("""
 #    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus2.csv" download target="_blank">
