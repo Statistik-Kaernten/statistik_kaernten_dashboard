@@ -62,7 +62,7 @@ with st.sidebar:
 
     with st.expander("Info"):
         st.write('''
-            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 0.2.0 vom 08.01.2025, erstellt von Martin Writz, BSc.
+            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 0.3 vom 07.02.2025, erstellt von Martin Writz, BSc.
             
             please report bugs to martin.writz@ktn.gv.at or abt1.statistik@ktn.gv.at, feel free to contribute or to commit a pull request directly
         ''')
