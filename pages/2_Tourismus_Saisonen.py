@@ -208,7 +208,7 @@ if (choosenMonatSaison == 'Monat'):
             scale=alt.Scale(domain=monats_order, range=color_palette),
             legend=None
         ),
-        order=alt.Order('MonatId:N', sort='ascending'),
+        order=alt.Order('Jahr:N', sort='ascending'),
         tooltip=[
             alt.Tooltip('Jahr:O', 
                         title='Jahr'), 
@@ -285,6 +285,8 @@ with col2:
     gemeinden = getGemeindeListe(region)
     if(len(gemeinden) != 0):
         st.dataframe(gemeinden, hide_index=True, use_container_width=True)
+    else:
+        st.write(f"#### {region}")
 
 #st.markdown("""
 #    <a href="https://github.com/Statistik-Kaernten/statistik_kaernten_dashboard/blob/main/data/t_tourismus1.csv" download target="_blank">
