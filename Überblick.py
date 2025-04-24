@@ -50,6 +50,7 @@ def anstiegrueckgang(value: float) -> list[str]:
     else: 
         lst = ['Rückgang', 'Minus']
     return lst
+
 ## CUSTOM CSS
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
@@ -74,7 +75,7 @@ with st.sidebar:
 
     with st.expander("Info"):
         st.write('''
-            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 1.0 vom 02.04.2025, erstellt von Martin Writz, BSc.
+            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 1.1 vom 24.04.2025, erstellt von Martin Writz, BSc.
             
             please report bugs to martin.writz@ktn.gv.at or abt1.statistik@ktn.gv.at, feel free to contribute or commit a pull request directly
         ''')
