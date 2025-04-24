@@ -10,6 +10,7 @@
 
 # ÜBERBLICK SEITE des Dashboards
 import streamlit as st
+from data import *
 
 ## PAGE CONFIG
 st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide")
@@ -38,6 +39,17 @@ def colored_box(label, bgcolor, text, textcolor, bordercolor):
         </div>
         """, unsafe_allow_html=True)
 
+def format_prozent(value: float) -> str:
+    sign = '-' if value < 0 else '+'
+    value  = f"{abs(value):.1f}".replace('.', ',')
+    return f"{sign}{value} %"
+
+def anstiegrueckgang(value: float) -> list[str]:
+    if (value >= 0):
+        lst = ['Anstieg', 'Plus']
+    else: 
+        lst = ['Rückgang', 'Minus']
+    return lst
 ## CUSTOM CSS
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
@@ -73,4 +85,16 @@ st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Land
 col1, col2 = st.columns(2)
 
 with col1:
-    colored_box("TOURISMUS", "#46C39F", r"Gegenüber dem Februar des Vorjahres errechnet sich bei den Ankünften ein Rückgang von -9,6 % und bei den Übernachtungen ein Minus von -11,4 %. Die durchschnittliche Aufenthaltsdauer belief sich auf 4,5 Nächtigungen.", "black", "white")
+    df = addMonthNames(load_data('t_tourismus1.csv'))
+    df = df[df['Jahr'] >= df['Jahr'].max()-1] 
+    df = df.groupby(['Jahr', 'MonatId']).agg({'Monat': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+    monthDf = df.groupby(['MonatId']).agg({'Monat': 'max'}).reset_index()
+    current_month_int = df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max()
+
+    current_month_str = monthDf.loc[monthDf['MonatId'] == df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max(),'Monat'].values[0]
+    veraenderung_ankuenfte = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]-100
+    veraenderung_uebernachtungen = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]-100
+    durchschnittliche_verweildauer = f"{round(df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]/df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0],1):.1f}".replace('.', ',')
+
+
+    colored_box("TOURISMUS", "#46C39F", f"Gegenüber dem {current_month_str} des Vorjahres errechnet sich bei den Ankünften ein {anstiegrueckgang(veraenderung_ankuenfte)[0]} von {format_prozent(veraenderung_ankuenfte)} und bei den Übernachtungen ein {anstiegrueckgang(veraenderung_uebernachtungen)[1]} von {format_prozent(veraenderung_uebernachtungen)}. Die durchschnittliche Aufenthaltsdauer belief sich auf {durchschnittliche_verweildauer} Nächtigungen.", "black", "white")
