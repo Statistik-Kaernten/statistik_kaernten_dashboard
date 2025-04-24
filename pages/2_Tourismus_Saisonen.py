@@ -177,18 +177,6 @@ elif((choosenMonatSaison == 'Monat') and (time == 'Tourismusjahr')):
 monats_order = [11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 monats_order_n = ['Jänner', 'Feber', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
 t_region_palette = ['#3a5487', '#5c8c9c', '#c0c4c9', '#eb7e24', '#ca1e32', '#C8602A', '#8C4C22', '#A95C6D', '#F2C278']
-#t_region_palette = ['#D66E30', '#A75E24', '#C55D44', '#F1A54C', '#F49D2D', '#9B5D2B', '#E0A56A', '#9A5736', '#D77A3C']
-#t_region_palette = ['#8C4C22', '#B45F30', '#F19C42', '#F5A623', '#DA5C21', '#B94E0E', '#FF6F26', '#D45C21', '#C8602A']
-#t_region_palette = ['#FF5733', '#FF8D1A', '#FFB84D', '#FF6F61', '#FF7E2D', '#FF9B3D', '#F28D24', '#F47A3C', '#F15C3C']
-#t_region_palette = ['#D4A29C', '#A95C6D', '#C08497', '#F1D0B1', '#F2C8B3', '#8C4D4D', '#D88F88', '#9C4D40', '#D8B4A0']
-#t_region_palette = ['#C0392B', '#F39C12', '#E74C3C', '#F1C40F', '#D35400', '#E67E22', '#C67C47', '#F39C12', '#F47C4D']
-#t_region_palette = ['#FF8C42', '#FF5E13', '#FF6A13', '#F8C21C', '#F49D4B', '#FFB74D', '#D3551F', '#E07A35', '#F58F41']
-#t_region_palette = ['#F4C542', '#F1A54C', '#F1B748', '#F2C65C', '#F29F28', '#F4A625', '#F1B14B', '#F5C759', '#F49E21']
-#t_region_palette = ['#D36B1F', '#F29257', '#E86A42', '#D2491E', '#D78E55', '#F3A642', '#D55D1E', '#FF7D2A', '#F15A3A']
-#t_region_palette = ['#9E2A2F', '#B84B2B', '#DC5422', '#E94B3C', '#F1C40F', '#F39C12', '#FF6B2D', '#D35400', '#F2C278']
-#t_region_palette = ['#3288bd', '#f46d43', '#66c2a5', '#fee08b', '#e6f598', '#abdda4', '#f46d43', '#ffffbf', '#d53e4f']
-#t_region_palette = ['#30b0e0', '#d2d2cb', '#4d695d', '#83a79d', '#dae8e5', '#a1cde5', '#bfdeee', '#bc252d', '#abdda4']
-
 
 # MONATS LOGIC
 if (choosenMonatSaison == 'Monat'): 
@@ -196,7 +184,9 @@ if (choosenMonatSaison == 'Monat'):
     df = df[df['Jahr'] >= select_start_jahr-1]
     df = df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
     stacked_bar_chart = alt.Chart(df).mark_bar().encode(
-        x=alt.X(f'{year}:O', 
+        x=alt.X(f'{year}:O',
+                axis=alt.Axis(labelAngle=45, 
+                              labelExpr="substring(datum.value, 2)"), 
                 title='Jahr'),
         y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', 
                 title='Anzahl'
@@ -224,6 +214,10 @@ if (choosenMonatSaison == 'Monat'):
             alt.Tooltip(f'Durchschnittliche Verweildauer:O', 
                         title='Durchschnittliche Verweildauer')
         ],
+    ).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16,
+    titleFontWeight='bold'
     ).properties(
         width=800,
         height=600
@@ -237,7 +231,9 @@ else:
     df = df[~(df['filter'] < select_start_jahr-1)]
     df.drop('filter', inplace=True, axis=1)
     stacked_bar_chart = alt.Chart(df).mark_bar().encode(
-        x=alt.X(f'{year}:O', 
+        x=alt.X(f'{year}:O',
+                axis=alt.Axis(labelAngle=45, 
+                              labelExpr="substring(datum.value, 2)"), 
                 title='Jahr'),
         y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', 
                 title='Anzahl'
@@ -262,6 +258,10 @@ else:
                         title='Durchschnittliche Verweildauer')
 
         ],
+    ).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16,
+    titleFontWeight='bold'
     ).properties(
         width=800,
         height=600

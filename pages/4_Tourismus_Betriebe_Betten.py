@@ -95,6 +95,7 @@ df['Veränderung Vorjahr'] = df['Veränderung Vorjahr'].apply(
 
 stacked_bar_chart = alt.Chart(df).mark_bar().encode(
     x=alt.X(f'Jahr:O', 
+            axis=alt.Axis(labelAngle=45),
             title='Jahr'),
     y=alt.Y(f'Anzahl:Q', 
             title='Anzahl'
@@ -122,6 +123,10 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
                     title='Anzahl')
 
         ],
+    ).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16,
+    titleFontWeight='bold'
     ).properties(
         width=800,
         height=600
@@ -140,6 +145,7 @@ col1, col2 = st.columns([0.7, 0.3])
 
 with col1:
     st.write(f"### Gefilterte Daten")
+    df.drop('Veränderung Vorjahr', axis=1, inplace=True)
     st.dataframe(df, use_container_width=True, hide_index=True)#, column_order=('Jahr', 'Tourismusjahr', 'MonatId', 'Monat', 'Ankünfte', 'Übernachtungen', 'Veränderung Ankünfte', 'Veränderung Übernachtungen'))
 with col2:
     st.write(f"### Gemeinden")

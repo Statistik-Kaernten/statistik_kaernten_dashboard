@@ -138,7 +138,7 @@ df = calcDifference(df, 12*getSymbolLimit())
 df = df[df['Jahr'] >= select_start_jahr]
 
 chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
-        x=alt.X('Date:T', title='Datum', axis=alt.Axis(labelAngle=270)),
+        x=alt.X('Date:T', title='Datum', axis=alt.Axis(labelAngle=45)),
         y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', title='Anzahl'), 
         color=alt.Color(f'{type}:N', 
                         title=f'{type}', 
@@ -166,11 +166,15 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
 )
 line = chart.mark_line()
 points = chart.mark_point(filled=True, size=30)
-line_chart = (chart + points)
+line_chart = (chart + points).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16,
+    titleFontWeight='bold'
+    )
 
 selection2 = alt.selection_point(fields=[f'{type}'], bind='legend')
 stacked_bar_chart = alt.Chart(df).mark_bar().encode(
-    x=alt.X('Date:T', title='Datum', axis=alt.Axis(labelAngle=270)),
+    x=alt.X('Date:T', title='Datum', axis=alt.Axis(labelAngle=45)),
     y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', title='Anzahl'),
     color=alt.Color(
         f'{type}:N', 
@@ -195,7 +199,11 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
         alt.Tooltip('Durchschnittliche Verweildauer:N',
                     title='Durchschnittliche Verweildauer')
     ],
-).add_params(
+).configure_axis(
+    labelFontSize=14,
+    titleFontSize=16,
+    titleFontWeight='bold'
+    ).add_params(
     selection2).properties(
     width=800,
     height=600
