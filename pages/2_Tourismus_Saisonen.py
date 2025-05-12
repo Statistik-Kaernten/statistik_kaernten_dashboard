@@ -179,56 +179,56 @@ monats_order_n = ['Jänner', 'Feber', 'März', 'April', 'Mai', 'Juni', 'Juli', '
 t_region_palette = ['#3a5487', '#5c8c9c', '#c0c4c9', '#eb7e24', '#ca1e32', '#C8602A', '#8C4C22', '#A95C6D', '#F2C278']
 
 # MONATS LOGIC
-if (choosenMonatSaison == 'Monat') and (region == 'Alle Tourismusregionen'):
+#if (choosenMonatSaison == 'Monat') and (region == 'Alle Tourismusregionen'):
 
     # Create a new 'datetime' column by combining 'Jahr' and 'Monat'
     #df['datetime'] = pd.to_datetime(df['Jahr'].astype(str) + '-' + df['MonatId'].astype(str), format='%Y-%m')
-    df['label'] = df['Monat'].astype(str).str[:3] + ' ' + df['Tourismusjahr'].astype(str).str[-5:]
-    print(df)
-    df = calcDifference(df, distance_for_calc_diff)
-    df = df[df['Jahr'] >= select_start_jahr-1]
-    df = df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
-    df = df.sort_values(['Jahr', 'MonatId', 'Tourismusregion'])
-    stacked_bar_chart = alt.Chart(df).mark_bar().encode(
-        x=alt.X('label:N',
-                sort=df['label'].tolist(),
-                axis=alt.Axis(labelAngle=45), 
-                #              format='%b %Y'),#labelExpr="substring(datum.value, 2)"), 
-                title='Jahr'),
-        y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', 
-                title='Anzahl'
-                ),
-        color=alt.Color(
-            'Tourismusregion:N', 
-            title='Tourismusregion', 
-            scale=alt.Scale(range=t_region_palette),
-            legend=None
-        ),
-        order=alt.Order('Jahr:N', sort='ascending'),
-        tooltip=[
-            alt.Tooltip('Jahr:O', 
-                        title='Jahr'), 
-            alt.Tooltip('Monat:N', 
-                        title='Monat'), 
-            alt.Tooltip('Tourismusregion:N', 
-                        title='Tourismusregion'),
-            alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
-                        title='Anzahl', 
-                        format=','),
-            alt.Tooltip(f'{diff}:O', 
-                        title='Veränderung zum Vorjahr'),
-            alt.Tooltip(f'Durchschnittliche Verweildauer:O', 
-                        title='Durchschnittliche Verweildauer')
-        ],
-    ).configure_axis(
-    labelFontSize=14,
-    titleFontSize=16,
-    titleFontWeight='bold'
-    ).properties(
-        width=800,
-        height=600
-    )
-elif (choosenMonatSaison == 'Monat'): 
+#    df['label'] = df['Monat'].astype(str).str[:3] + ' ' + df['Tourismusjahr'].astype(str).str[-5:]
+#    print(df)
+#    df = calcDifference(df, distance_for_calc_diff)
+#    df = df[df['Jahr'] >= select_start_jahr-1]
+#    df = df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
+#    df = df.sort_values(['Jahr', 'MonatId', 'Tourismusregion'])
+#    stacked_bar_chart = alt.Chart(df).mark_bar().encode(
+#        x=alt.X('label:N',#
+#                sort=df['l#abel'].tolist(),
+#                axis=alt.Axis(labelAngle=45), 
+#                #              format='%b %Y'),#labelExpr="substring(datum.value, 2)"), 
+#                title='Jahr'),
+#        y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', 
+#                title='Anzahl'
+#                ),
+#        color=alt.Color(
+#            'Tourismusregion:N', 
+#            title='Tourismusregion', 
+#            scale=alt.Scale(range=t_region_palette),
+#            legend=None
+#        ),
+#        order=alt.Order('Jahr:N', sort='ascending'),
+#        tooltip=[
+#            alt.Tooltip('Jahr:O', 
+#                        title='Jahr'), 
+#            alt.Tooltip('Monat:N', 
+#                        title='Monat'), 
+#            alt.Tooltip('Tourismusregion:N', 
+#                        title='Tourismusregion'),
+#            alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
+#                        title='Anzahl', 
+#                        format=','),
+#            alt.Tooltip(f'{diff}:O', 
+#                        title='Veränderung zum Vorjahr'),
+#            alt.Tooltip(f'Durchschnittliche Verweildauer:O', 
+#                        title='Durchschnittliche Verweildauer')
+#        ],
+#    ).configure_axis(
+#    labelFontSize=14,
+#    titleFontSize=16,
+#    titleFontWeight='bold'
+#    ).properties(
+#        width=800,
+#        height=600
+#    )
+if (choosenMonatSaison == 'Monat'): 
     df = calcDifference(df, distance_for_calc_diff)
     df = df[df['Jahr'] >= select_start_jahr-1]
     df = df[~((df['Jahr'] < select_start_jahr) & (df['MonatId'] < 11))]
