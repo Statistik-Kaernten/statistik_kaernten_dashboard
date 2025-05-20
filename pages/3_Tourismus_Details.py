@@ -1,9 +1,11 @@
+import streamlit as st
+
+st.set_page_config(page_title="Tourismus - Herkunftsländer Vergleich", layout="wide")
+
 import altair as alt
 from data import *
 from custom import *
 from create_charts import *
-
-st.set_page_config(page_title="Tourismus - Herkunftsländer Vergleich", layout="wide")
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 

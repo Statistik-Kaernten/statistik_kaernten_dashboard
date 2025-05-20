@@ -1,7 +1,5 @@
 # Tourismus - Saisonen
-#import streamlit as st
-from data import getMonths
-from custom import *
+import streamlit as st
 
 # PAGE CONFIG
 st.set_page_config(page_title="Tourismus Regionen", layout="wide")
@@ -9,7 +7,6 @@ st.set_page_config(page_title="Tourismus Regionen", layout="wide")
 import altair as alt
 from data import *
 from custom import *
-#from style import insert_styling
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
@@ -70,7 +67,7 @@ with st.sidebar:
     selected_monate = []
     selected_saison = False
     selected_anteil_anzahl = 'Anzahl'
-    
+
     linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
     selected_diagram = st.selectbox('Diagrammtyp:', linieBalken, label_visibility='visible', index=linieBalken.index('Balkendiagramm'))
     if selected_diagram != 'Liniendiagramm':
