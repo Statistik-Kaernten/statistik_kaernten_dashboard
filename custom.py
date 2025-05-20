@@ -1,4 +1,5 @@
 import streamlit as st
+from data import addMonthNames, load_data
 import base64
 
 def get_custom_css() -> str:
@@ -188,3 +189,22 @@ def insert_styling(bgr: int, bgg: int, bgb: int, bgAlpha: int, sbr: int, sbg: in
     unsafe_allow_html=True,
 )
     
+def tourismus_box() -> any:
+    """
+    colored_box for "Tourismus"
+
+    :return: colored_box with monthly "Tourismus" information
+    """
+    df = addMonthNames(load_data('t_tourismus1.csv'))
+    df = df[df['Jahr'] >= df['Jahr'].max()-1] 
+    df = df.groupby(['Jahr', 'MonatId']).agg({'Monat': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+    monthDf = df.groupby(['MonatId']).agg({'Monat': 'max'}).reset_index()
+    current_month_int = df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max()
+
+    current_month_str = monthDf.loc[monthDf['MonatId'] == df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max(),'Monat'].values[0]
+    veraenderung_ankuenfte = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]-100
+    veraenderung_uebernachtungen = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]-100
+    durchschnittliche_verweildauer = f"{round(df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]/df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0],1):.1f}".replace('.', ',')
+
+    tourismus_box = colored_box("TOURISMUS", "#46C39F", f"Gegenüber dem {current_month_str} des Vorjahres errechnet sich bei den Ankünften ein {anstiegrueckgang(veraenderung_ankuenfte)[0]} von {format_prozent(veraenderung_ankuenfte)} und bei den Übernachtungen ein {anstiegrueckgang(veraenderung_uebernachtungen)[1]} von {format_prozent(veraenderung_uebernachtungen)}. Die durchschnittliche Aufenthaltsdauer belief sich auf {durchschnittliche_verweildauer} Nächtigungen.", "black", "white")
+    return tourismus_box
