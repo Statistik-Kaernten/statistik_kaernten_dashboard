@@ -165,7 +165,7 @@ monats_order_n = ['Jänner', 'Feber', 'März', 'April', 'Mai', 'Juni', 'Juli', '
 
 # MONATS LOGIC
 #selection = alt.selection_point(fields=['Tourismusregion'], bind='legend')
-selection = alt.selection_multi(fields=['Tourismusregion'])
+selection = alt.selection_point(fields=['Tourismusregion'])
 
 if (choosenMonatSaison == 'Monat'): 
     df = calcDifference(df, distance_for_calc_diff)
