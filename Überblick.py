@@ -1,55 +1,20 @@
 # Dashboard der Landesstelle für Statistik
 # Amt der Kärntner Landesregierung
-# BETA-Version 0.2.0 vom 08.01.2025
-# erstellt von Martin Writz, BSc.
+# created by Martin Writz, BSc.
 
 # please report bugs to martin.writz@ktn.gv.at or
 # abt1.statistik@ktn.gv.at 
 # feel free to contribute or
 # to commit a pull request directly
 
-# ÜBERBLICK SEITE des Dashboards
-import streamlit as st
+# Dashboard-Overview page 
 from data import *
+from custom import *
+from PIL import Image, ImageOps
 
 ## PAGE CONFIG
 st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide")
 
-from custom import *
-from style import insert_styling
-from PIL import Image, ImageOps
-
-
-def colored_box(label, bgcolor, text, textcolor, bordercolor):
-    # Define the CSS styles for the box
-    box_style = f"""
-        background-color: {bgcolor}; 
-        padding: 20px; 
-        border-radius: 5px; 
-        border: 2px solid {bordercolor};  /* White border with a thickness of 2px */
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);  /* Optional: Adds a subtle shadow for better visibility */
-        text-align: center;  /* Center-aligns the text within the box */
-    """
-    
-    # Render the box with Streamlit
-    st.markdown(f"""
-        <div style="{box_style}">
-            <h2 style="color: {textcolor}; margin: 0;">{label}</h2>
-            <p style="margin: 0; color: {textcolor}"><font size="5">{text}</font></p>
-        </div>
-        """, unsafe_allow_html=True)
-
-def format_prozent(value: float) -> str:
-    sign = '-' if value < 0 else '+'
-    value  = f"{abs(value):.1f}".replace('.', ',')
-    return f"{sign}{value} %"
-
-def anstiegrueckgang(value: float) -> list[str]:
-    if (value >= 0):
-        lst = ['Anstieg', 'Plus']
-    else: 
-        lst = ['Rückgang', 'Minus']
-    return lst
 
 ## CUSTOM CSS
 st.markdown(get_custom_css(), unsafe_allow_html=True)
@@ -75,7 +40,7 @@ with st.sidebar:
 
     with st.expander("Info"):
         st.write('''
-            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 1.1 vom 24.04.2025, erstellt von Martin Writz, BSc.
+            Dashboard der Landesstelle für Statistik, Amt der Kärntner Landesregierung, BETA-Version 2.0 vom 20.05.2025, erstellt von Martin Writz, BSc.
             
             please report bugs to martin.writz@ktn.gv.at or abt1.statistik@ktn.gv.at, feel free to contribute or commit a pull request directly
         ''')
@@ -86,16 +51,4 @@ st.markdown(f"""<h2>Die interaktive Version des statistischen Handbuchs des Land
 col1, col2 = st.columns(2)
 
 with col1:
-    df = addMonthNames(load_data('t_tourismus1.csv'))
-    df = df[df['Jahr'] >= df['Jahr'].max()-1] 
-    df = df.groupby(['Jahr', 'MonatId']).agg({'Monat': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
-    monthDf = df.groupby(['MonatId']).agg({'Monat': 'max'}).reset_index()
-    current_month_int = df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max()
-
-    current_month_str = monthDf.loc[monthDf['MonatId'] == df[df['Jahr'] == df['Jahr'].max()]['MonatId'].max(),'Monat'].values[0]
-    veraenderung_ankuenfte = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0]-100
-    veraenderung_uebernachtungen = 100/df.loc[(df['Jahr'] == int(df['Jahr'].max()-1)) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]*df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]-100
-    durchschnittliche_verweildauer = f"{round(df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Übernachtungen'].values[0]/df.loc[(df['Jahr'] == int(df['Jahr'].max())) & (df['MonatId'] == current_month_int)]['Ankünfte'].values[0],1):.1f}".replace('.', ',')
-
-
-    colored_box("TOURISMUS", "#46C39F", f"Gegenüber dem {current_month_str} des Vorjahres errechnet sich bei den Ankünften ein {anstiegrueckgang(veraenderung_ankuenfte)[0]} von {format_prozent(veraenderung_ankuenfte)} und bei den Übernachtungen ein {anstiegrueckgang(veraenderung_uebernachtungen)[1]} von {format_prozent(veraenderung_uebernachtungen)}. Die durchschnittliche Aufenthaltsdauer belief sich auf {durchschnittliche_verweildauer} Nächtigungen.", "black", "white")
+    tourismus_box()

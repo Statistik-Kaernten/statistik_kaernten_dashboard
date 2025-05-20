@@ -7,18 +7,6 @@ import numpy as np
 #PANDAS SETTING
 pd.options.mode.copy_on_write = True
 
-# not needed
-@DeprecationWarning
-def getAllCombinations(startingYear: int, endYear: int, regions: str):
-    years = range(startingYear, endYear +1)
-    months = range(1, 13)
-    all_combinations = pd.DataFrame(list(itertools.product(years, months, regions)),
-                                    columns=['year', 'month', 'Tourismusregion']).rename(columns={'year': 'Jahr', 'month': 'MonatId'})    
-
-    all_combinations = all_combinations[(all_combinations['Jahr'].astype(int) > 2003)]
-
-    return all_combinations
-
 def fillEmptyFields(df: pd.DataFrame, startingYear: int, endYear: int) -> pd.DataFrame: 
 
     regions = df['Tourismusregion'].unique()
@@ -30,46 +18,6 @@ def fillEmptyFields(df: pd.DataFrame, startingYear: int, endYear: int) -> pd.Dat
     merged_df['Übernachtungen'] = merged_df['Übernachtungen'].fillna(0)
 
     return merged_df
-
-# Too calc intensive, inefficient, slow
-@DeprecationWarning
-def calculate_yearly_difference(df: pd.DataFrame, startYear: int, endYear: int, year_col: str, month_col: str, type_col: str, herkunft_unterkunft_col: str, value_col: str) -> pd.DataFrame:
-    '''
-    Calculate the difference between values for a given month from the current year and the previous year.
-
-    Parameters:
-    df (pd.DataFrame): DataFrame containing the data
-    year_col (str): Column name for the year
-    month_col (str): Column name for the month
-    value_col (str): Column name for the value to compare
-
-    Returns:
-    pd.Series: A new series with the calculated differences
-    '''
-    
-    def get_difference(row):
-        previous_year = row[year_col] - 1
-        # Search for the value from the previous year with the same month
-        last_year_value = df.loc[(df[year_col] == previous_year) & 
-                                 (df[month_col] == row[month_col]) & 
-                                 (df[type_col] == row[type_col]) & 
-                                 (df[herkunft_unterkunft_col] == row[herkunft_unterkunft_col]), 
-                                 value_col]
-        
-        # If last year's value exists, calculate the difference, else return None
-        if not last_year_value.empty:
-            if (row[value_col] > 0):
-                val = (100 / last_year_value.values[0] * row[value_col]) - 100
-                if (val >= 0):
-                    return f"+{val:.2f} %"
-                else:
-                    return f"{val:.2f} %"
-
-        else:
-            return 'N/A'
-
-    # Apply the function to each row
-    return df.apply(get_difference, axis=1)
 
 def getFullDataFrame(df: pd.DataFrame) -> pd.DataFrame:
     df['Tourismusjahr'] = np.where(
@@ -267,49 +215,62 @@ def filterJahr(df: pd.DataFrame, start: int, end: int) -> pd.DataFrame:
     df = df[df['Jahr'].astype(int) <= end]
     return df
 
-
 def getGemeindeListe(select: str):
     gkz = getSelectionItems()
     return gkz[gkz['Tourismusregion'] == select]['Gemeinde']
 
-def get_data(param: str, start: int, end: int, first_choice: str, second_choice: str, zaehlstelle: str = None) -> pd.DataFrame:
+def get_data(param: str, start: int, end: int, first_choice: str, second_choice: str = 'Kärnten-Mitte', zaehlstelle: str = None, selectRegioLst: list = None, selectMonatLst: list = None) -> pd.DataFrame:
     df: pd.DataFrame = load_data(param)
-    if (param == 't_tourismus1.csv'):
-        df = sep_regions(df, second_choice)
-        df = addMonthNames(df)
-        df = filterTourismusjahr(df, start, end)
-        #if (len(df['Tourismusregion'].unique() != 1)):
-        #   df.sort_values(by=['Jahr', 'MonatId', 'Tourismusregion'], inplace=True)
-        #else:
-        #    df.sort_values(by=['Jahr', 'MonatId'], inplace=True)
+    if selectRegioLst is not None and len(selectRegioLst) == 0:
+        #df = df[df['Tourismusregion'].isin(selectRegioLst)]
+        if selectMonatLst is not None and len(selectMonatLst) > 0:
+            month = getMonths()
+            month = month[month['Name'].isin(selectMonatLst)]['Id'].astype(int).tolist()
+            df = df[df['Monat'].isin(month)]
+    elif selectRegioLst is not None and len(selectRegioLst) != 0:
+        df = df[df['Tourismusregion'].isin(selectRegioLst)]
+        if selectMonatLst is not None and len(selectMonatLst) > 0:
+            month = getMonths()
+            month = month[month['Name'].isin(selectMonatLst)]['Id'].astype(int).tolist()
+            df = df[df['Monat'].isin(month)]
 
-    elif (param == 't_tourismus2.csv' or param == 't_tourismus3.csv'):
-        df = sep_regions(df, second_choice)
-        df = addMonthNames(df)
-        df['Date'] = pd.to_datetime(df[['Jahr', 'MonatId']].rename(columns={'Jahr': 'year', 'MonatId': 'month'}).assign(day=1))
+    else:
+        if (param == 't_tourismus1.csv'):
+            df = sep_regions(df, second_choice)
+            df = addMonthNames(df)
+            df = filterTourismusjahr(df, start, end)
+            #if (len(df['Tourismusregion'].unique() != 1)):
+            #   df.sort_values(by=['Jahr', 'MonatId', 'Tourismusregion'], inplace=True)
+            #else:
+            #    df.sort_values(by=['Jahr', 'MonatId'], inplace=True)
+
+        elif (param == 't_tourismus2.csv' or param == 't_tourismus3.csv'):
+            df = sep_regions(df, second_choice)
+            df = addMonthNames(df)
+            df['Date'] = pd.to_datetime(df[['Jahr', 'MonatId']].rename(columns={'Jahr': 'year', 'MonatId': 'month'}).assign(day=1))
+            
+            df = df[df['Jahr'] >= start]
+            df = df[df['Jahr'] <= end]
+            if (second_choice == 'Ganz Kärnten' and param == 't_tourismus2.csv'):
+                df = df[['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Herkunft', 'Ankünfte', 'Übernachtungen']]
+                df = df.groupby(['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Herkunft']).sum().reset_index() 
+                df['Tourismusregion'] = 'Ganz Kärnten'
+            elif (second_choice == 'Ganz Kärnten' and param == 't_tourismus3.csv'):
+                df = df[['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Unterkunft', 'Ankünfte', 'Übernachtungen']]
+                df = df.groupby(['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Unterkunft']).sum().reset_index() 
+                df['Tourismusregion'] = 'Ganz Kärnten'
+            df = df.sort_values('Date')
+
+        if (param == 't_tourismus4.csv'):
+            df = filterJahr(df, start, end)
+            df = sep_regions(df, second_choice)
+            if (second_choice == 'Ganz Kärnten'):
+                df['Tourismusregion'] = 'Ganz Kärnten'
+                df = df[['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art', 'Anzahl']]
+                df = df.groupby(['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art']).sum().reset_index() 
         
-        df = df[df['Jahr'] >= start]
-        df = df[df['Jahr'] <= end]
-        if (second_choice == 'Ganz Kärnten' and param == 't_tourismus2.csv'):
-            df = df[['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Herkunft', 'Ankünfte', 'Übernachtungen']]
-            df = df.groupby(['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Herkunft']).sum().reset_index() 
-            df['Tourismusregion'] = 'Ganz Kärnten'
-        elif (second_choice == 'Ganz Kärnten' and param == 't_tourismus3.csv'):
-            df = df[['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Unterkunft', 'Ankünfte', 'Übernachtungen']]
-            df = df.groupby(['Jahr', 'Monat', 'MonatId', 'Date', 'Tourismusjahr', 'Tourismushalbjahr', 'Unterkunft']).sum().reset_index() 
-            df['Tourismusregion'] = 'Ganz Kärnten'
-        df = df.sort_values('Date')
-
-    if (param == 't_tourismus4.csv'):
-        df = filterJahr(df, start, end)
-        df = sep_regions(df, second_choice)
-        if (second_choice == 'Ganz Kärnten'):
-            df['Tourismusregion'] = 'Ganz Kärnten'
-            df = df[['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art', 'Anzahl']]
-            df = df.groupby(['Jahr', 'Tourismusregion', 'Tourismushalbjahr', 'Unterkunft', 'Art']).sum().reset_index() 
-    
-    if (param == 't_bev1.csv'):
-        df = filterJahr(df, start, end)
+        if (param == 't_bev1.csv'):
+            df = filterJahr(df, start, end)
 
     return df
 
@@ -321,5 +282,6 @@ def get_data_with_gkz_list(param: str, start: int, end: int, gkz_list = list[str
     return df
 
 if __name__ == '__main__':
-    df = getGemeindeListe('Region Klagenfurt')
-    print(df)
+    #df = getGemeindeListe('Region Klagenfurt')
+    #print(getSubRegion('Tourismusregion')[0])
+    pass

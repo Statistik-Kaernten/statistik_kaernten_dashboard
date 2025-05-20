@@ -1,16 +1,11 @@
-import streamlit as st
+import altair as alt
+from data import *
+from custom import *
 
 # PAGE CONFIG
 st.set_page_config(page_title="Betriebe / Betten", layout="wide")
 
-import altair as alt
-from data import *
-from custom import *
-from style import insert_styling
-
-
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
-
 
 def getPeriode(time: str):
     if (time == 'Tourismusjahr'):
@@ -25,9 +20,6 @@ def getPeriode(time: str):
 # CONSTANTS
 START_JAHR: int = 2008
 END_JAHR: int = 2024
-
-
-color_palette = get_ktn_palette()
 
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
@@ -102,7 +94,7 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
             ),
     color=alt.Color(
         'Unterkunft:N', 
-        scale=alt.Scale(range=color_palette),
+        scale=alt.Scale(range=get_cud_palette()),
         legend=None
     ),
     order=alt.Order('MonatId:N', sort='ascending'),
