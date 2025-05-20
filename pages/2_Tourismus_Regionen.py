@@ -13,6 +13,8 @@ from custom import *
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
+color_map = get_color_map_regionen()
+
 # # # SESSION STATES # # #
 if 'start_year' not in st.session_state:
     st.session_state.start_year=2015
@@ -65,30 +67,33 @@ with st.sidebar:
     select_start_jahr: int = st.session_state.start_year
     select_end_jahr: int = st.session_state.end_year
 
-    #st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
+    selected_monate = []
+    selected_saison = False
+    selected_anteil_anzahl = 'Anzahl'
+    
+    linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
+    selected_diagram = st.selectbox('Diagrammtyp:', linieBalken, label_visibility='visible', index=linieBalken.index('Balkendiagramm'))
+    if selected_diagram != 'Liniendiagramm':
+        selected_anteil_anzahl = st.radio('Anteil/Anzahl auswählen:', ['Anzahl', 'Anteil'], index=0,label_visibility='visible')
+        selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
+        selected_saison = st.radio('zeitliche Gruppierung auswählen:', ['Monate anzeigen', 'Tourismussaison erzeugen', 'Jahr erzeugen'], label_visibility='visible')
+    selected_regionen = st.multiselect('Tourismusregionen auswählen:', getSubRegion('Tourismusregion'), label_visibility='visible')
 
-   # st.image("img/logo.png", use_container_width=True)
+    
+    st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-    #with st.expander("Info"):
-    #    st.write('''
-    #        Infobox
-    #    ''')
+    st.image("img/logo.png", use_container_width=True)
+
+    with st.expander("Info"):
+        st.write('''
+            Infobox
+        ''')
 
 # # # END SIDE BAR # # #
 
 st.write('## Tourismus - Regionen')
-with st.sidebar:
-    selected_monate = []
-    selected_saison = False
 
-    linieBalken = ['Zeitreihe', 'Balkendiagramm'] 
-    selected_diagram = st.selectbox('Diagrammtype:', linieBalken, label_visibility='visible', index=linieBalken.index('Balkendiagramm'))
-    if selected_diagram != 'Zeitreihe':
-        selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
-        #selected_anteil_anzahl = st.radio('Anteil/Anzahl', ['Anzahl', 'Anteil'], index=0,label_visibility='hidden')
-        selected_saison = st.radio('zeitliche Gruppierung auswählen:', ['Monate anzeigen', 'Tourismussaison erzeugen', 'Jahr erzeugen'], label_visibility='visible')
-    selected_regionen = st.multiselect('Tourismusregionen auswählen:', getSubRegion('Tourismusregion'), label_visibility='visible')
-
+    
 
 # Tourismus nach Tourismusregione
 df2 = get_data('t_tourismus1.csv', select_start_jahr-2, select_end_jahr, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
@@ -96,27 +101,26 @@ df = get_data('t_tourismus1.csv', select_start_jahr-2, select_end_jahr, 'Tourism
 df = filterJahr(df, st.session_state.start_year, st.session_state.end_year)
 df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
 
-
-
 if selected_saison == 'Tourismussaison erzeugen':
     df2 = df2.groupby(['Tourismusjahr', 'Tourismusregion']).agg({'Jahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+    total = df2.groupby('Tourismusjahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Tourismusjahr'
 elif selected_saison == 'Jahr erzeugen':
     df2 = df2.groupby(['Jahr', 'Tourismusregion']).agg({'Tourismusjahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
+    total = df2.groupby('Jahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Jahr'
 else: # Monate:
-    #df2['Monat'] = df2['Monat'].astype(int)
-    #df2 = df2.sort_values(['Jahr', 'Monat'])
     df2['Date'] = pd.to_datetime(df2[['Jahr', 'Monat']].rename(columns={'Jahr': 'year', 'Monat': 'month'}).assign(day=1))
-    df2['TJahrMonat'] = df2.apply(lambda row: str(row['Jahr'])+"-"+str(row['Monat']), axis=1)
+    total = df2.groupby('Date')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
+    df2['Date'] = df2['Date'].apply(lambda x: x.strftime('%Y-%m'))
     x_axis_show = 'Date'
+df2['Anzahl'] = df2[f'{choosenAnkuenfteUebernachtungen}']
+df2['Anteil'] = round((df2[f'{choosenAnkuenfteUebernachtungen}'] / total) * 100, 1)
 
 if df is not None:
     df['Date'] = pd.to_datetime(df[['Jahr', 'Monat']].rename(columns={'Jahr': 'year', 'Monat': 'month'}).assign(day=1))
 
-
-
-selection = alt.selection_point(fields=selected_regionen)
+selection = alt.selection_point(fields=['Tourismusregion'], bind='legend')
 
 chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
         x=alt.X('Date:T', title='Datum', axis=alt.Axis(labelAngle=45)),
@@ -124,30 +128,30 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
         color=alt.Color(f'Tourismusregion:N', 
                         title='Tourismusregion', 
                         legend=alt.Legend(orient='bottom', 
-                                          columns=4
+                                          columns=4,
+                                          titleFontWeight='bold'
                                           ), 
-                        scale=alt.Scale(range=get_cud_palette())),
+                        scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.1)),
-        tooltip=[alt.Tooltip('Date:T',
-                              title='Datum'), 
-                 alt.Tooltip(f'Tourismusregion:N', 
-                             title='Tourismusregion'),
-                 alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
-                             title='Anzahl', 
-                             format=','),
-                #alt.Tooltip(f'{diff_type}:N',
-                #           title=f'{diff_type}'),
-                #alt.Tooltip('Durchschnittliche Verweildauer:N',
-                #            title='Durchschnittliche Verweildauer')
-                             ],
     ).add_params(
     selection).properties(
     width=800,
     height=600
 )
-line = chart.mark_line()
-points = chart.mark_point(filled=True, size=30)
-line_chart = (chart + points).configure_axis(
+
+hover_points = alt.Chart(df).mark_circle(size=100, opacity=0).encode(
+    x='Date:T',
+    y=f'{choosenAnkuenfteUebernachtungen}:Q',
+    tooltip=[alt.Tooltip('Date:T',
+                              title='Datum'), 
+                 alt.Tooltip(f'Tourismusregion:N', 
+                             title='Tourismusregion'),
+                 alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
+                             title='Anzahl', 
+                             format=',')] 
+)
+
+line_chart = (chart + hover_points).configure_axis(
     labelFontSize=14,
     titleFontSize=16,
     titleFontWeight='bold'
@@ -158,26 +162,27 @@ selection2 = alt.selection_point(fields=['Tourismusregion'], bind='legend')
 stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
     x=alt.X(f'{x_axis_show}:N', 
             title='Datum', 
-            axis=alt.Axis(#labelExpr="datum", 
+            axis=alt.Axis(labelExpr="datum.value", 
                 labelAngle=45)),
-    y=alt.Y(f'{choosenAnkuenfteUebernachtungen}:Q', title='Anzahl'),
+    y=alt.Y(f'{selected_anteil_anzahl}:Q', title=f'{selected_anteil_anzahl}'),
     color=alt.Color(
         'Tourismusregion:N', 
         title='Tourismusregion', 
         legend=alt.Legend(orient='bottom', 
-                            columns=4
+                            columns=4,
+                            titleFontWeight='bold'
                             ), 
-        scale=alt.Scale(range=get_cud_palette())
+        scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))
     ),
     opacity=alt.condition(selection2, alt.value(1), alt.value(0.1)),
     order=alt.Order(f'{choosenAnkuenfteUebernachtungen}:Q', sort='ascending'),
     tooltip=[
-        alt.Tooltip('Date:T', 
+        alt.Tooltip(f'{x_axis_show}:N', 
                     title='Datum'), 
         alt.Tooltip('Tourismusregion:N', 
                     title='Tourismusregion'), 
-        alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
-                    title='Anzahl', 
+        alt.Tooltip(f'{selected_anteil_anzahl}:Q', 
+                    title=f'{selected_anteil_anzahl}', 
                     format=','),
         #alt.Tooltip(f'{diff_type}:N',
         #            title=f'{diff_type}'),
@@ -195,7 +200,7 @@ stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
 )
 
 
-if selected_diagram == 'Zeitreihe':
+if selected_diagram == 'Liniendiagramm':
     st.altair_chart(line_chart, use_container_width=True)
 elif selected_diagram == 'Balkendiagramm':
     st.altair_chart(stacked_bar_chart, use_container_width=True)
