@@ -1,13 +1,10 @@
 # Tourismus - Saisonen
-import streamlit as st
-
-# PAGE CONFIG
-st.set_page_config(page_title="Tourismus", layout="wide")
-
 import altair as alt
 from data import *
 from custom import *
-#from style import insert_styling
+
+# PAGE CONFIG
+st.set_page_config(page_title="Tourismus", layout="wide")
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
@@ -211,7 +208,10 @@ if (choosenMonatSaison == 'Monat'):
     titleFontWeight='bold'
     ).properties(
         width=800,
-        height=600
+        height=600,
+        usermeta={
+                    "embedOptions": custom_locale
+                }
     )
 
 # SAISON LOGIC

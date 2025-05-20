@@ -1,12 +1,9 @@
-#from sessionStates import * # IMPORTS SESSION STATES AND STREAMLIT
-import streamlit as st
-st.set_page_config(page_title="Tourismus - Herkunftsländer Vergleich", layout="wide")
-
 import altair as alt
 from data import *
 from custom import *
 from create_charts import *
-from style import insert_styling
+
+st.set_page_config(page_title="Tourismus - Herkunftsländer Vergleich", layout="wide")
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
@@ -26,9 +23,6 @@ def getPeriode(time: str):
         return 'SHJ'
     else:
         return 0
-    
-
-land_ktn_palette = get_ktn_palette()
 
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
@@ -145,7 +139,7 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
                         legend=alt.Legend(orient='right', 
                                           columns=getColumnLength(),
                                           symbolLimit=getSymbolLimit()), 
-                        scale=alt.Scale(range=land_ktn_palette)),
+                        scale=alt.Scale(range=get_cud_palette())),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.1)),
         tooltip=[alt.Tooltip('Date:T',
                               title='Datum'), 
@@ -182,7 +176,7 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
         legend=alt.Legend(orient='right', 
                             columns=getColumnLength(),
                             symbolLimit=getSymbolLimit()), 
-        scale=alt.Scale(range=land_ktn_palette)
+        scale=alt.Scale(range=get_cud_palette())
     ),
     opacity=alt.condition(selection2, alt.value(1), alt.value(0.1)),
     order=alt.Order(f'{choosenAnkuenfteUebernachtungen}:Q', sort='ascending'),

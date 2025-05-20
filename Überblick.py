@@ -8,14 +8,13 @@
 # to commit a pull request directly
 
 # Dashboard-Overview page 
-import streamlit as st
 from data import *
+from custom import *
+from PIL import Image, ImageOps
 
 ## PAGE CONFIG
 st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide")
 
-from custom import *
-from PIL import Image, ImageOps
 
 ## CUSTOM CSS
 st.markdown(get_custom_css(), unsafe_allow_html=True)
