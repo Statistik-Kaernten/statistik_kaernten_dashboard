@@ -1,9 +1,11 @@
-import altair as alt
-from data import *
-from custom import *
+import streamlit as st
 
 # PAGE CONFIG
 st.set_page_config(page_title="Betriebe / Betten", layout="wide")
+
+import altair as alt
+from data import *
+from custom import *
 
 insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
 
