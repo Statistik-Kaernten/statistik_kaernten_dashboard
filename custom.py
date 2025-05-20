@@ -1,6 +1,27 @@
 import streamlit as st
 from data import addMonthNames, load_data
 import base64
+from data import getSubRegion
+
+custom_locale = {
+                "formatLocale": {
+                                "decimal": ",",
+                                "thousands": ".",
+                                "grouping": [3],
+                                "currency": ["", "\u00a0€"]
+                                },
+
+                "timeFormatLocale": {
+                                "dateTime": "%A, der %e. %B %Y, %X",
+                                "date": "%d.%m.%Y",
+                                "time": "%H:%M:%S",
+                                "periods": ["AM", "PM"],
+                                "days": ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+                                "shortDays": ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+                                "months": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
+                                "shortMonths": ["Jan", "Feb", "Mrz", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+                                    }
+                }
 
 def get_custom_css() -> str:
     """
@@ -208,3 +229,24 @@ def tourismus_box() -> any:
 
     tourismus_box = colored_box("TOURISMUS", "#46C39F", f"Gegenüber dem {current_month_str} des Vorjahres errechnet sich bei den Ankünften ein {anstiegrueckgang(veraenderung_ankuenfte)[0]} von {format_prozent(veraenderung_ankuenfte)} und bei den Übernachtungen ein {anstiegrueckgang(veraenderung_uebernachtungen)[1]} von {format_prozent(veraenderung_uebernachtungen)}. Die durchschnittliche Aufenthaltsdauer belief sich auf {durchschnittliche_verweildauer} Nächtigungen.", "black", "white")
     return tourismus_box
+
+def get_color_map_regionen() -> dict[str: str]:
+    """
+    Fixed Colors for Tourismusregionen, to prevent color"jumping" when adding or removing items from multiselect
+    """
+    tourismusregionen = getSubRegion('Tourismusregion')
+    palette = get_cud_palette()
+
+    color_map_regionen = {
+        tourismusregionen[0]: palette[0], 
+        tourismusregionen[1]: palette[1],
+        tourismusregionen[2]: palette[2],
+        tourismusregionen[3]: palette[3],
+        tourismusregionen[4]: palette[4],
+        tourismusregionen[5]: palette[5],
+        tourismusregionen[6]: palette[6],
+        tourismusregionen[7]: palette[7],
+        tourismusregionen[8]: palette[8]
+    }
+    return color_map_regionen
+
