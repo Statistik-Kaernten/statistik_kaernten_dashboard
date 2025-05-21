@@ -79,9 +79,11 @@ st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
 if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
     df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
     type: str = 'Herkunft'
+    waehlenSie = 'Bitte wählen Sie ein Land aus.'
 elif(choosenHerkunftUnterkunft == 'Unterkunftsarten'):
     df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
     type: str = 'Unterkunft'
+    waehlenSie = 'Bitte wählen Sie eine Unterkunftsart aus.'
 
 # # #  BEGIN - SELECTION SECTION  # # #
 displayList: list[str] = getList(df, choosenHerkunftUnterkunft)
@@ -107,7 +109,7 @@ options = st.multiselect(
         "# Auswahl:",
         displayList,
         selected, 
-        placeholder='Bitte wählen Sie ein Land aus.'
+        placeholder=waehlenSie
         )
 
 
