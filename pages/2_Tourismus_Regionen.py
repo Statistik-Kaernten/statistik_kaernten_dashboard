@@ -67,16 +67,19 @@ with st.sidebar:
     selected_monate = []
     selected_saison = False
     selected_anteil_anzahl = 'Anzahl'
+    selected_regionen = []
 
     linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
     selected_diagram = st.selectbox('Diagrammtyp:', linieBalken, label_visibility='visible', index=linieBalken.index('Balkendiagramm'))
-    if selected_diagram != 'Liniendiagramm':
-        selected_anteil_anzahl = st.radio('Anteil/Anzahl auswählen:', ['Anzahl', 'Anteil'], index=0,label_visibility='visible')
-        selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
-        selected_saison = st.radio('zeitliche Gruppierung auswählen:', ['Monate anzeigen', 'Tourismussaison erzeugen', 'Jahr erzeugen'], label_visibility='visible')
-    selected_regionen = st.multiselect('Tourismusregionen auswählen:', getSubRegion('Tourismusregion'), label_visibility='visible')
+    advanced_options = st.checkbox('Erweiterte Funktionen', False)
+    if advanced_options:
+        if selected_diagram != 'Liniendiagramm':
+            selected_anteil_anzahl = st.radio('Anteil/Anzahl auswählen:', ['Anzahl', 'Anteil'], index=0,label_visibility='visible')
+            selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
+            selected_saison = st.radio('zeitliche Gruppierung auswählen:', ['Monate anzeigen', 'Tourismussaison erzeugen', 'Jahr erzeugen'], label_visibility='visible')
+        selected_regionen = st.multiselect('Tourismusregionen auswählen:', getSubRegion('Tourismusregion'), label_visibility='visible')
 
-    
+        
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
     st.image("img/logo.png", use_container_width=True)
@@ -90,15 +93,14 @@ with st.sidebar:
 
 st.write('## Tourismus - Regionen')
 
-    
-
 # Tourismus nach Tourismusregione
-df2 = get_data('t_tourismus1.csv', select_start_jahr-2, select_end_jahr, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
-df = get_data('t_tourismus1.csv', select_start_jahr-2, select_end_jahr, 'Tourismusregion', selectRegioLst=selected_regionen)
+df = get_data('t_tourismus1.csv', START_JAHR, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen)
+df2 = get_data('t_tourismus1.csv', START_JAHR, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
 df = filterJahr(df, st.session_state.start_year, st.session_state.end_year)
 df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
 
 if selected_saison == 'Tourismussaison erzeugen':
+    df2 = df2[((df2['Jahr'] == df2['Jahr'].min()) & (df2['Monat'].astype(int).isin([11, 12]))) | (df2['Jahr'] != df2['Jahr'].min())]
     df2 = df2.groupby(['Tourismusjahr', 'Tourismusregion']).agg({'Jahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     total = df2.groupby('Tourismusjahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Tourismusjahr'
@@ -196,13 +198,12 @@ stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
     height=600
 )
 
-
 if selected_diagram == 'Liniendiagramm':
     st.altair_chart(line_chart, use_container_width=True)
 elif selected_diagram == 'Balkendiagramm':
     st.altair_chart(stacked_bar_chart, use_container_width=True)
 else:
     st.write("Bitte Auswahl treffen")
-
-#st.write(df)
+df2['Jahr'] = df2['Jahr'].astype(str)
+df2.drop(columns=['Anteil'], inplace=True)
 st.write(df2)
