@@ -52,6 +52,13 @@ with st.sidebar:
                             options2, 
                             index=options2.index('Ganz Kärnten'),
                             label_visibility='visible')
+    
+    monatsaisonvalues = ['Saison', 'Monat']
+    choosenMonatSaison = st.selectbox("Saison/Monat", 
+                                    monatsaisonvalues, 
+                                    index=monatsaisonvalues.index('Monat'),
+                                    label_visibility='visible')
+    
     selected_jahre: int = st.slider("Startjahr",
         min_value=START_JAHR,
         max_value=END_JAHR-1,
@@ -80,12 +87,6 @@ st.write('## Tourismus - Saisonen')
 df = get_data('t_tourismus1.csv', select_start_jahr-2, select_end_jahr, 'Tourismusregion', region)
 
 st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {region} - {time}")
-
-monatsaisonvalues = ['Saison', 'Monat']
-choosenMonatSaison = st.selectbox("Saison/Monat", 
-                                  monatsaisonvalues, 
-                                  index=monatsaisonvalues.index('Monat'),
-                                  label_visibility='visible')
 
 periodeDf = getPeriode(time)
 

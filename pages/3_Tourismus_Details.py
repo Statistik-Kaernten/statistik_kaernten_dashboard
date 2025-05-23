@@ -60,6 +60,44 @@ with st.sidebar:
     select_start_jahr: int = selected_jahre[0]
     select_end_jahr: int = selected_jahre[1]
 
+    #####   
+    linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
+    choosenDiagram = st.selectbox('Grafik', linieBalken, label_visibility='collapsed',  index=linieBalken.index('Balkendiagramm'))
+    if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
+        df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+        type: str = 'Herkunft'
+        waehlenSie = 'Bitte wählen Sie ein Land aus.'
+    elif(choosenHerkunftUnterkunft == 'Unterkunftsarten'):
+        df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+        type: str = 'Unterkunft'
+        waehlenSie = 'Bitte wählen Sie eine Unterkunftsart aus.'
+    displayList: list[str] = getList(df, choosenHerkunftUnterkunft)
+    if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
+        laender: list[str] = ['Bundesländer Österreichs', 'Regionen Deutschlands', 'Alle Herkunftsländer', 'Auswahl']
+
+        selectLaender = st.selectbox('Märkte nach Regionen:', laender)
+        bdl: list[str] = bdl_at + bdl_de
+        allLaenderList = [item for item in displayList if item not in bdl]
+
+        if (selectLaender == 'Bundesländer Österreichs'):
+            selected = bdl_at
+        elif (selectLaender == 'Regionen Deutschlands'):
+            selected = bdl_de
+        elif (selectLaender == 'Alle Herkunftsländer'):
+            selected = allLaenderList
+        else:
+            selected = []
+    elif (choosenHerkunftUnterkunft == 'Unterkunftsarten'):
+        selected = displayList
+    options = st.multiselect(
+            "# Auswahl:",
+            displayList,
+            selected, 
+            placeholder=waehlenSie
+            )
+    #####
+
+
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
     st.image("img/logo.png", use_container_width=True)
@@ -76,39 +114,42 @@ st.write(f'## Tourismus nach {choosenHerkunftUnterkunft}')
 st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
 
 # # # #  GET THE DATA
-if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
-    df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
-    type: str = 'Herkunft'
-elif(choosenHerkunftUnterkunft == 'Unterkunftsarten'):
-    df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
-    type: str = 'Unterkunft'
+#if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
+#    df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+#    type: str = 'Herkunft'
+#    waehlenSie = 'Bitte wählen Sie ein Land aus.'
+#elif(choosenHerkunftUnterkunft == 'Unterkunftsarten'):
+#    df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+#    type: str = 'Unterkunft'
+#    waehlenSie = 'Bitte wählen Sie eine Unterkunftsart aus.'
 
 # # #  BEGIN - SELECTION SECTION  # # #
-displayList: list[str] = getList(df, choosenHerkunftUnterkunft)
+#displayList: list[str] = getList(df, choosenHerkunftUnterkunft)
 
-if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
-    laender: list[str] = ['Bundesländer Österreichs', 'Regionen Deutschlands', 'Alle Herkunftsländer', 'Auswahl']
+#if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
+#    laender: list[str] = ['Bundesländer Österreichs', 'Regionen Deutschlands', 'Alle Herkunftsländer', 'Auswahl']
 
-    selectLaender = st.selectbox('Märkte nach Regionen:', laender)
-    bdl: list[str] = bdl_at + bdl_de
-    allLaenderList = [item for item in displayList if item not in bdl]
+#    selectLaender = st.selectbox('Märkte nach Regionen:', laender)
+#    bdl: list[str] = bdl_at + bdl_de
+#    allLaenderList = [item for item in displayList if item not in bdl]
 
-    if (selectLaender == 'Bundesländer Österreichs'):
-        selected = bdl_at
-    elif (selectLaender == 'Regionen Deutschlands'):
-        selected = bdl_de
-    elif (selectLaender == 'Alle Herkunftsländer'):
-        selected = allLaenderList
-    else:
-        selected = []
-elif (choosenHerkunftUnterkunft == 'Unterkunftsarten'):
-    selected = displayList
-options = st.multiselect(
-        "# Auswahl:",
-        displayList,
-        selected, 
-        placeholder='Bitte wählen Sie ein Land aus.'
-        )
+#    if (selectLaender == 'Bundesländer Österreichs'):
+#        selected = bdl_at
+#    elif (selectLaender == 'Regionen Deutschlands'):
+#        selected = bdl_de
+#    elif (selectLaender == 'Alle Herkunftsländer'):
+#        selected = allLaenderList
+#    else:
+#        selected = []
+#elif (choosenHerkunftUnterkunft == 'Unterkunftsarten'):
+#    selected = displayList
+#options = st.multiselect(
+#        "# Auswahl:",
+#        displayList,
+#        selected, 
+#        placeholder=waehlenSie
+#        )
+
 
 
 #### SYMBOL LIMIT
@@ -120,8 +161,17 @@ def getColumnLength():
         return 2
     else: 
         return 1
+    
 df = df[df[type].isin(options)]
+
 # # #  END - SELECT LÄNDER SECTION  # # #
+if choosenHerkunftUnterkunft == 'Unterkunftsarten':
+    color_map_keys = list(get_color_map_unterkunftsarten(displayList).keys())
+    color_map_values = list(get_color_map_unterkunftsarten(displayList).values())
+else:
+    color_map_keys = options
+    color_map_values = get_cud_palette()
+
 
 periodeDf = getPeriode(time)
 if (periodeDf == 'SHJ'):
@@ -142,7 +192,7 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
                                           columns=getColumnLength(),
                                           symbolLimit=getSymbolLimit(),
                                           titleFontWeight='bold'), 
-                        scale=alt.Scale(range=get_cud_palette())),
+                        scale=alt.Scale(domain=color_map_keys, range=color_map_values)),
         opacity=alt.condition(selection, alt.value(1), alt.value(0.1)),
         tooltip=[alt.Tooltip('Date:T',
                               title='Datum'), 
@@ -180,7 +230,7 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
                             columns=getColumnLength(),
                             symbolLimit=getSymbolLimit(),
                             titleFontWeight='bold'), 
-        scale=alt.Scale(range=get_cud_palette())
+        scale=alt.Scale(domain=color_map_keys, range=color_map_values)
     ),
     opacity=alt.condition(selection2, alt.value(1), alt.value(0.1)),
     order=alt.Order(f'{choosenAnkuenfteUebernachtungen}:Q', sort='ascending'),
@@ -208,8 +258,8 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
 )
 
 if (options!=[]):
-    linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
-    choosenDiagram = st.selectbox('Grafik', linieBalken, label_visibility='collapsed',  index=linieBalken.index('Balkendiagramm'))
+#    linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
+#    choosenDiagram = st.selectbox('Grafik', linieBalken, label_visibility='collapsed',  index=linieBalken.index('Balkendiagramm'))
     if (choosenDiagram == 'Liniendiagramm'):
         st.altair_chart(line_chart, use_container_width=True)
     elif (choosenDiagram == 'Balkendiagramm'):
