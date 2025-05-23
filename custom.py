@@ -1,5 +1,5 @@
 import streamlit as st
-from data import addMonthNames, load_data
+from data import addMonthNames, load_data, getList
 import base64
 from data import getSubRegion
 
@@ -58,6 +58,7 @@ def get_cud_palette() -> list[str]:
 
     :return: cud_color_palette: List of hex colors
     """
+    '''
     cud_colors = [
             '#003B5C', 
             '#FFB81C', 
@@ -67,17 +68,29 @@ def get_cud_palette() -> list[str]:
             '#5B8C5A', 
             '#CC79A7',
             '#E69F00', 
-            '#56B4E9', 
-            '#009E73', 
-            '#F0E442', 
-            '#0072B2', 
-            '#D55E00',
-            '#999999', 
-            '#F28500', 
-            '#A2CD5A', 
-            '#AD6F3B', 
-            '#5D9C9A', 
-            '#D3A4A4'
+            '#56B4E9',  
+            #'#009E73', 
+            #'#F0E442', 
+            #'#0072B2', 
+            #'#D55E00',
+            #'#999999', 
+            #'#F28500', 
+            #'#A2CD5A', 
+            #'#AD6F3B', 
+            #'#5D9C9A', 
+            #'#D3A4A4'
+            ]
+    '''
+    cud_colors = [
+            '#e69d00', 
+            '#56b3e9', 
+            '#009e74', 
+            '#f0e442', 
+            '#0071b2', 
+            '#d55c00', 
+            '#cc79a7',
+            '#000000', 
+            '#999999'
             ]
     return cud_colors
 
@@ -250,3 +263,16 @@ def get_color_map_regionen() -> dict[str: str]:
     }
     return color_map_regionen
 
+def get_color_map_unterkunftsarten(displayList: list[str]) -> dict[str: str]:
+    palette = get_cud_palette()
+    color_map_regionen = {
+        displayList[0]: palette[0], 
+        displayList[1]: palette[1],
+        displayList[2]: palette[2],
+        displayList[3]: palette[3],
+        displayList[4]: palette[4],
+        displayList[5]: palette[5],
+        displayList[6]: palette[6]
+    }
+    print(color_map_regionen)
+    return color_map_regionen
