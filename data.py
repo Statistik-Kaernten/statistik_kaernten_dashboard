@@ -188,12 +188,19 @@ def getSubRegion(columnName: str) -> list[str]:
     return reList
 
 def getList(df: pd.DataFrame, param: str) -> list[str]:
-    if (param == 'Herkunftsländern'):
-        return sorted(list(set(df['Herkunft'])))
-    elif (param == 'Unterkunftsarten'):
-        return sorted(list(set(df['Unterkunft'])))
+    if df is None:
+        if (param == 'Unterkunftsarten'):
+            df = load_data('t_tourismus4.csv')
+            return_list = sorted(list(set(df['Unterkunft'])))
+            return_list.remove('Gewerbl. Beherb.betriebe 5*/4*/4* Superior')
+            return return_list
     else:
-        return list(-1)
+        if (param == 'Herkunftsländern'):
+            return sorted(list(set(df['Herkunft'])))
+        elif (param == 'Unterkunftsarten'):
+            return sorted(list(set(df['Unterkunft'])))
+        else:
+            return list(-1)
 
 def sep_regions(df: pd.DataFrame, second_choice: str) -> pd.DataFrame:
     if (second_choice == 'Alle Tourismusregionen'):
@@ -222,7 +229,6 @@ def getGemeindeListe(select: str):
 def get_data(param: str, start: int, end: int, first_choice: str, second_choice: str = 'Kärnten-Mitte', zaehlstelle: str = None, selectRegioLst: list = None, selectMonatLst: list = None) -> pd.DataFrame:
     df: pd.DataFrame = load_data(param)
     if selectRegioLst is not None and len(selectRegioLst) == 0:
-        #df = df[df['Tourismusregion'].isin(selectRegioLst)]
         if selectMonatLst is not None and len(selectMonatLst) > 0:
             month = getMonths()
             month = month[month['Name'].isin(selectMonatLst)]['Id'].astype(int).tolist()
@@ -239,10 +245,6 @@ def get_data(param: str, start: int, end: int, first_choice: str, second_choice:
             df = sep_regions(df, second_choice)
             df = addMonthNames(df)
             df = filterTourismusjahr(df, start, end)
-            #if (len(df['Tourismusregion'].unique() != 1)):
-            #   df.sort_values(by=['Jahr', 'MonatId', 'Tourismusregion'], inplace=True)
-            #else:
-            #    df.sort_values(by=['Jahr', 'MonatId'], inplace=True)
 
         elif (param == 't_tourismus2.csv' or param == 't_tourismus3.csv'):
             df = sep_regions(df, second_choice)
@@ -282,6 +284,5 @@ def get_data_with_gkz_list(param: str, start: int, end: int, gkz_list = list[str
     return df
 
 if __name__ == '__main__':
-    #df = getGemeindeListe('Region Klagenfurt')
-    #print(getSubRegion('Tourismusregion')[0])
+    print(getList(None, 'Unterkunftsarten'))
     pass

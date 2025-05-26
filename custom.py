@@ -263,9 +263,33 @@ def get_color_map_regionen() -> dict[str: str]:
     }
     return color_map_regionen
 
+def get_color_map_all_unterkunftsarten() -> dict[str: str]:
+    palette = get_cud_palette()
+    displayList = getList(None, 'Unterkunftsarten')
+    color_map_all_unterkunftsarten = {
+        displayList[0]: palette[0], 
+        displayList[1]: palette[1],
+        displayList[2]: palette[2],
+        displayList[3]: palette[3],
+        displayList[4]: palette[4],
+        displayList[5]: palette[5],
+        displayList[6]: palette[6],
+        displayList[7]: palette[7],
+        displayList[8]: palette[8],
+        displayList[9]: palette[0], 
+        displayList[10]: palette[1],
+        displayList[11]: palette[2],
+        displayList[12]: palette[3],
+        displayList[13]: palette[4],
+        displayList[14]: palette[5],
+        displayList[15]: palette[6],
+        displayList[16]: palette[7]
+    }
+    return color_map_all_unterkunftsarten
+
 def get_color_map_unterkunftsarten(displayList: list[str]) -> dict[str: str]:
     palette = get_cud_palette()
-    color_map_regionen = {
+    color_map_unterkunftsarten = {
         displayList[0]: palette[0], 
         displayList[1]: palette[1],
         displayList[2]: palette[2],
@@ -274,5 +298,4 @@ def get_color_map_unterkunftsarten(displayList: list[str]) -> dict[str: str]:
         displayList[5]: palette[5],
         displayList[6]: palette[6]
     }
-    print(color_map_regionen)
-    return color_map_regionen
+    return color_map_unterkunftsarten

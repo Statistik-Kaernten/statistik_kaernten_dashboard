@@ -45,6 +45,7 @@ with st.sidebar:
                             index=options2.index('Ganz Kärnten'),
                             label_visibility='visible')
 
+    selected_unterkunftsart = st.multiselect('Unterkunftsart auswählen:', getList(None, 'Unterkunftsarten'), label_visibility='visible')
     
     selected_jahre: int = st.slider("Startjahr",
         min_value=START_JAHR,
@@ -82,10 +83,15 @@ elif (periodeDf == 'Tourismusjahr'):
 
 df = df[df['Art'] == choosenArt]
 
+if selected_unterkunftsart is not None and len(selected_unterkunftsart) != 0:
+    df = df[df['Unterkunft'].isin(selected_unterkunftsart)]
+
 df = df.sort_values(['Jahr', 'Unterkunft'])
 df['Veränderung Vorjahr'] =  round(df['Anzahl'].pct_change(len(df[df['Jahr'] == END_JAHR])).fillna(0) * 100, 2)
 df['Veränderung Vorjahr'] = df['Veränderung Vorjahr'].apply(
                                 lambda x: f"+{x:.2f}%" if x >= 0 else f"{x:.2f}%" if x < 0 else "N/A")
+
+color_map = get_color_map_all_unterkunftsarten()
 
 stacked_bar_chart = alt.Chart(df).mark_bar().encode(
     x=alt.X(f'Jahr:O', 
@@ -96,7 +102,8 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
             ),
     color=alt.Color(
         'Unterkunft:N', 
-        scale=alt.Scale(range=get_cud_palette()),
+        scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values())),
+        #scale=alt.Scale(range=get_cud_palette()),
         legend=None
     ),
     order=alt.Order('MonatId:N', sort='ascending'),
@@ -115,7 +122,6 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
                     title='Art'),
         alt.Tooltip(f'Anzahl:Q', 
                     title='Anzahl')
-
         ],
     ).configure_axis(
     labelFontSize=14,
@@ -127,7 +133,10 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
     )
 
 # DISPLAY CHART
-st.altair_chart(stacked_bar_chart, use_container_width=True)
+if (df['Anzahl'].sum() == 0):
+    st.write('Nichts zu visualisieren.')
+else:
+    st.altair_chart(stacked_bar_chart, use_container_width=True)
 
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
