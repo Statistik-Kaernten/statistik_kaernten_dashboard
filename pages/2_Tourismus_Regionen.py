@@ -95,20 +95,25 @@ st.write('## Tourismus - Regionen')
 
 # Tourismus nach Tourismusregione
 df = get_data('t_tourismus1.csv', START_JAHR, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen)
-df2 = get_data('t_tourismus1.csv', START_JAHR, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
+df2 = get_data('t_tourismus1.csv', START_JAHR-1, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
 df = filterJahr(df, st.session_state.start_year, st.session_state.end_year)
-df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
+df2 = filterJahr(df2, st.session_state.start_year-1, st.session_state.end_year)
 
 if selected_saison == 'Tourismussaison erzeugen':
-    df2 = df2[((df2['Jahr'] == df2['Jahr'].min()) & (df2['Monat'].astype(int).isin([11, 12]))) | (df2['Jahr'] != df2['Jahr'].min())]
+    if st.session_state.start_year == 2004:
+        df2 = df2[((df2['Jahr'] == df2['Jahr'].min()) & (df2['Monat'].astype(int).isin([11, 12]))) | (df2['Jahr'] != df2['Jahr'].min()-1)]
+    else:
+        df2 = df2[((df2['Jahr'] == df2['Jahr'].min()) & (df2['Monat'].astype(int).isin([11, 12]))) | (df2['Jahr'] != df2['Jahr'].min())]
     df2 = df2.groupby(['Tourismusjahr', 'Tourismusregion']).agg({'Jahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     total = df2.groupby('Tourismusjahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Tourismusjahr'
 elif selected_saison == 'Jahr erzeugen':
+    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
     df2 = df2.groupby(['Jahr', 'Tourismusregion']).agg({'Tourismusjahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     total = df2.groupby('Jahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Jahr'
 else: # Monate:
+    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
     df2['Date'] = pd.to_datetime(df2[['Jahr', 'Monat']].rename(columns={'Jahr': 'year', 'Monat': 'month'}).assign(day=1))
     total = df2.groupby('Date')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     df2['Date'] = df2['Date'].apply(lambda x: x.strftime('%Y-%m'))
