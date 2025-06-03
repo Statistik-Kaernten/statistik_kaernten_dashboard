@@ -209,6 +209,13 @@ elif selected_diagram == 'Balkendiagramm':
     st.altair_chart(stacked_bar_chart, use_container_width=True)
 else:
     st.write("Bitte Auswahl treffen")
+
 df2['Jahr'] = df2['Jahr'].astype(str)
-df2.drop(columns=['Anteil'], inplace=True)
+
+if 'Date' in df2.columns:
+    df2.drop(columns=['Date'], inplace=True)
+
+if 'Anzahl' in df2.columns:
+    df2.drop(columns=['Anzahl'], inplace=True)
+    
 st.write(df2)
