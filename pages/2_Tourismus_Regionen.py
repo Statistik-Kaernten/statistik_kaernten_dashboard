@@ -210,5 +210,5 @@ elif selected_diagram == 'Balkendiagramm':
 else:
     st.write("Bitte Auswahl treffen")
 df2['Jahr'] = df2['Jahr'].astype(str)
-df2.drop(columns=['Anteil', 'Anzahl', 'Date'], inplace=True)
+df2.drop(columns=['Anteil'], inplace=True)
 st.write(df2)
