@@ -13,7 +13,7 @@ from custom import *
 from PIL import Image, ImageOps
 
 ## PAGE CONFIG
-st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide")
+st.set_page_config(page_title="Dashboard der Landesstelle für Statistik", layout="wide", initial_sidebar_state='expanded')
 
 
 ## CUSTOM CSS
