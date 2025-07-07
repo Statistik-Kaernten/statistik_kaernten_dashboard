@@ -42,7 +42,12 @@ st.markdown(get_custom_css(), unsafe_allow_html=True)
 gdf = gpd.read_file('data/ktn_data.json')
 
 gkz_list = []
-tooltip = {"html": "{GEMNAM}", "style": {"color": "white"}}
+tooltip = {"html": "{GEMNAM}",
+    "style": {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",  # Dark background
+        "color": "white",
+        "fontSize": "14px"
+    }}
 
 regio = [str(regio) for regio in getSelectionItems() if regio == 'Tourismusregion' or regio == 'Bundesland']
 #regio.append('Eigene Auswahl')
