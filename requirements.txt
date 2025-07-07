@@ -3,3 +3,4 @@ numpy
 altair
 pydeck
 geopandas
+plotly
