@@ -2,13 +2,13 @@
 import streamlit as st
 
 # PAGE CONFIG
-st.set_page_config(page_title="Tourismus Regionen", layout="wide")
+#st.set_page_config(page_title="Tourismus Regionen", layout="wide")
 
 import altair as alt
 from data import *
 from custom import *
 
-insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
+insert_styling(255, 255, 255, 1, 70, 195, 159, 1, slider_bg_color='#b7d7ce', text_color='black')
 
 color_map = get_color_map_regionen()
 
@@ -41,7 +41,7 @@ with st.sidebar:
                                                    values, 
                                                    index=values.index('Übernachtungen'),
                                                    label_visibility='visible')
-    
+
     #timePeriod = ["Tourismusjahr", "Winterhalbjahr", "Sommerhalbjahr"]
     #time = st.selectbox("Zeitraum:", timePeriod, label_visibility='visible')
 
@@ -53,7 +53,7 @@ with st.sidebar:
     #                        options2, 
     #                        index=options2.index('Ganz Kärnten'),
     #                        label_visibility='visible')
-    selected_jahre: int = st.slider("Startjahr",
+    selected_jahre: int = st.slider("Jahre",
         min_value=START_JAHR,
         max_value=END_JAHR-1,
         value=(END_JAHR-10, END_JAHR),
@@ -68,18 +68,28 @@ with st.sidebar:
     selected_saison = False
     selected_anteil_anzahl = 'Anzahl'
     selected_regionen = []
+    selected_vorjahr_vormonat = 'Vorjahr'
+    selected_order = 'Alphabetisch'
 
     linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
     selected_diagram = st.selectbox('Diagrammtyp:', linieBalken, label_visibility='visible', index=linieBalken.index('Balkendiagramm'))
     advanced_options = st.checkbox('Erweiterte Funktionen', False)
     if advanced_options:
         if selected_diagram != 'Liniendiagramm':
-            selected_anteil_anzahl = st.radio('Anteil/Anzahl auswählen:', ['Anzahl', 'Anteil'], index=0,label_visibility='visible')
-            selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
+            sorting = ['Alphabetisch', 'Wert']
+            selected_order = st.selectbox('Sortierung:', sorting, label_visibility='visible', index=sorting.index('Alphabetisch'))
             selected_saison = st.radio('zeitliche Gruppierung auswählen:', ['Monate anzeigen', 'Tourismussaison erzeugen', 'Jahr erzeugen'], label_visibility='visible')
+            vorjahrmonat = ['Vorjahr', 'Vormonat']
+            if selected_saison == 'Monate anzeigen':
+                selected_vorjahr_vormonat = st.selectbox('Vergleich Vorjahr/Vormonat', vorjahrmonat, label_visibility='visible', index=vorjahrmonat.index('Vorjahr'))
+            else:
+                #selected_vorjahr_vormonat = st.selectbox('Vergleich Vorjahr/Vormonat', vorjahrmonat, label_visibility='visible', index=vorjahrmonat.index('Vorjahr'), disabled=True)
+                selected_vorjahr_vormonat = 'Vormonat'
+            selected_anteil_anzahl = st.radio('Anteil/Anzahl auswählen:', ['Anzahl', 'Anteil'], index=0,label_visibility='visible')
+           
+            selected_monate = st.multiselect('Monate auswählen:', getMonths()['Name'], label_visibility='visible')
         selected_regionen = st.multiselect('Tourismusregionen auswählen:', getSubRegion('Tourismusregion'), label_visibility='visible')
 
-        
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
     st.image("img/logo.png", use_container_width=True)
@@ -89,11 +99,23 @@ with st.sidebar:
             Infobox
         ''')
 
+    if selected_anteil_anzahl == 'Anteil':
+        diff_type = 'Veränderung Anteil'
+    elif (choosenAnkuenfteUebernachtungen == 'Ankünfte'):
+        diff_type = 'Veränderung Ankünfte'
+    elif (choosenAnkuenfteUebernachtungen == 'Übernachtungen'):
+        diff_type = 'Veränderung Übernachtungen'
+
+    if selected_order=='Alphabetisch':
+        df_sort = 'Tourismusregion:N'
+    else:
+        df_sort = f'{choosenAnkuenfteUebernachtungen}:Q'
+
 # # # END SIDE BAR # # #
 
 st.write('## Tourismus - Regionen')
 
-# Tourismus nach Tourismusregione
+# Tourismus nach Tourismusregionen
 df = get_data('t_tourismus1.csv', START_JAHR, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen)
 df2 = get_data('t_tourismus1.csv', START_JAHR-1, END_JAHR, 'Tourismusregion', selectRegioLst=selected_regionen, selectMonatLst=selected_monate)
 df = filterJahr(df, st.session_state.start_year, st.session_state.end_year)
@@ -108,12 +130,12 @@ if selected_saison == 'Tourismussaison erzeugen':
     total = df2.groupby('Tourismusjahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Tourismusjahr'
 elif selected_saison == 'Jahr erzeugen':
-    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
+    #df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
     df2 = df2.groupby(['Jahr', 'Tourismusregion']).agg({'Tourismusjahr': 'max', 'Ankünfte': 'sum', 'Übernachtungen': 'sum'}).reset_index()
     total = df2.groupby('Jahr')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     x_axis_show = 'Jahr'
 else: # Monate:
-    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
+    #df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
     df2['Date'] = pd.to_datetime(df2[['Jahr', 'Monat']].rename(columns={'Jahr': 'year', 'Monat': 'month'}).assign(day=1))
     total = df2.groupby('Date')[f'{choosenAnkuenfteUebernachtungen}'].transform('sum')
     df2['Date'] = df2['Date'].apply(lambda x: x.strftime('%Y-%m'))
@@ -123,6 +145,40 @@ df2['Anteil'] = round((df2[f'{choosenAnkuenfteUebernachtungen}'] / total) * 100,
 
 if df is not None:
     df['Date'] = pd.to_datetime(df[['Jahr', 'Monat']].rename(columns={'Jahr': 'year', 'Monat': 'month'}).assign(day=1))
+
+if selected_vorjahr_vormonat == 'Vorjahr':
+    if len(selected_regionen) == 0:
+        if len(selected_monate) == 0:
+            diff_factor = 12*len(df2['Tourismusregion'].unique())
+        else:
+            diff_factor = len(selected_monate)*len(df2['Tourismusregion'].unique())
+    else:
+        if len(selected_monate) == 0:
+            diff_factor = 12*len(df2['Tourismusregion'].unique())
+        else:
+            diff_factor = len(selected_monate)*len(selected_regionen)
+
+else:
+    if len(selected_regionen) == 0:
+        if len(selected_monate) == 0:
+            diff_factor = len(df2['Tourismusregion'].unique())
+        else:
+            diff_factor = len(df2['Tourismusregion'].unique())
+    else:
+        if len(selected_monate) == 0:
+            diff_factor = len(df2['Tourismusregion'].unique())
+        else:
+            diff_factor = len(selected_regionen)
+
+if selected_anteil_anzahl == 'Anteil':
+    df2 = calcDifference(df2, diff_factor, 'Anteil')
+else:
+    df2 = calcDifference(df2, diff_factor)
+
+if selected_saison == 'Jahr erzeugen':
+    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
+else:
+    df2 = filterJahr(df2, st.session_state.start_year, st.session_state.end_year)
 
 selection = alt.selection_point(fields=['Tourismusregion'], bind='legend')
 
@@ -179,7 +235,7 @@ stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
         scale=alt.Scale(domain=list(color_map.keys()), range=list(color_map.values()))
     ),
     opacity=alt.condition(selection2, alt.value(1), alt.value(0.1)),
-    order=alt.Order(f'{choosenAnkuenfteUebernachtungen}:Q', sort='ascending'),
+    order=alt.Order(f'{df_sort}', sort='ascending'),
     tooltip=[
         alt.Tooltip(f'{x_axis_show}:N', 
                     title='Datum'), 
@@ -188,10 +244,10 @@ stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
         alt.Tooltip(f'{selected_anteil_anzahl}:Q', 
                     title=f'{selected_anteil_anzahl}', 
                     format=','),
-        #alt.Tooltip(f'{diff_type}:N',
-        #            title=f'{diff_type}'),
-        #alt.Tooltip('Durchschnittliche Verweildauer:N',
-        #            title='Durchschnittliche Verweildauer')
+        alt.Tooltip(f'{diff_type}:N',
+                    title=f'{diff_type}'),
+        alt.Tooltip('Durchschnittliche Verweildauer:N',
+                    title='Durchschnittliche Verweildauer')
     ],
 ).configure_axis(
     labelFontSize=14,
@@ -209,13 +265,11 @@ elif selected_diagram == 'Balkendiagramm':
     st.altair_chart(stacked_bar_chart, use_container_width=True)
 else:
     st.write("Bitte Auswahl treffen")
-
 df2['Jahr'] = df2['Jahr'].astype(str)
 
-if 'Date' in df2.columns:
-    df2.drop(columns=['Date'], inplace=True)
-
-if 'Anzahl' in df2.columns:
-    df2.drop(columns=['Anzahl'], inplace=True)
-    
+try:    
+    df2 = df2[['Jahr', 'Tourismusjahr', 'Tourismushalbjahr', 'Monat', 'Tourismusregion', 'Ankünfte', 'Übernachtungen']]
+except:
+    df2 = df2[['Jahr', 'Tourismusjahr', 'Tourismusregion', 'Ankünfte', 'Übernachtungen']]
+st.write(f"### Gefilterte Daten")
 st.write(df2)

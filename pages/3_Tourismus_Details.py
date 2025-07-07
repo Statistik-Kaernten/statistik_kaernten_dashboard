@@ -6,8 +6,10 @@ import altair as alt
 from data import *
 from custom import *
 from create_charts import *
+import pydeck as pdk
+import geopandas as gpd
 
-insert_styling(255, 255, 255, 1, 70, 195, 159, 1)
+insert_styling(255, 255, 255, 1, 70, 195, 159, 1, slider_bg_color='#b7d7ce', text_color='black')
 
 # CONSTANTS
 START_JAHR: int = 2003
@@ -28,6 +30,63 @@ def getPeriode(time: str):
 
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
+
+### MAP PART
+gdf = gpd.read_file('data/ktn_data.json')
+
+gkz_list = []
+tooltip = {"html": "{GEMNAM}", "style": {"color": "white"}}
+
+regio = [str(regio) for regio in getSelectionItems() if regio == 'Tourismusregion' or regio == 'Bundesland']
+#regio.append('Eigene Auswahl')
+
+with st.sidebar:
+    region = st.selectbox('Region:', regio)
+    sub_region = st.selectbox(f'{region}', [str(gkz) for gkz in getSubRegion(region)])
+    gkz_list = [str(subreg) for subreg in getGkz(region, sub_region)]
+
+gdf = set_colors(gdf, gkz_list)
+geojson = gdf.__geo_interface__ 
+
+chart = pdk.Deck(
+        map_provider=None, #'carto'
+        map_style='light',
+        initial_view_state=pdk.ViewState(
+            latitude=46.94,
+            longitude=13.81,
+            zoom=6.5,
+            max_zoom=6.5,
+            min_zoom=6.5,
+        ),
+        layers=[
+             pdk.Layer(
+                    "GeoJsonLayer",
+                    data=geojson,       
+                    stroked=True,
+                    filled=True,
+                    drag_pan=False,
+                    id = "properties.GKZ",
+                    get_fill_color="properties.Color",
+                    get_line_color=[0, 0, 0, 255],
+                    line_width_min_pixels=0.5,
+                    pickable=True
+                )
+        ],
+        tooltip=tooltip
+    )
+
+with st.sidebar:
+    if region != 'Eigene Auswahl':
+        st.pydeck_chart(chart, height=250, use_container_width=True)
+    else:
+        event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object", height=250, use_container_width=True)
+        try: 
+            for elem in event.selection["objects"]["properties.GKZ"]:
+                gkz_list.append(f'{elem["properties"]["GKZ"]}')
+        except:
+            pass
+### MAP ENDE
+
 # # # BEGIN REGIONS-AUSWAHL # # # 
 with st.sidebar:
     ankuenfteUebernachtungen = ['Ankünfte', 'Übernachtungen']
@@ -39,19 +98,20 @@ with st.sidebar:
     choosenHerkunftUnterkunft = st.selectbox('nach', ['Herkunftsländern', 'Unterkunftsarten'], label_visibility='visible')
     time = 'Kalenderjahr'
 
-    first_choice = 'Tourismusregion' 
+    #first_choice = 'Tourismusregion' 
 
-    options2 = getSubRegion(first_choice)
-    options2.append('Ganz Kärnten')
+    #options2 = getSubRegion(first_choice)
+    #options2.append('Alle Tourismusregionen')
+    #options2.append('Ganz Kärnten')
     #options2.append('Alle Tourismusregionen') #???
-    second_choice = 'Ganz Kärnten'
-    second_choice = st.selectbox("Tourismusregion:", 
-                                    options2, 
-                                    label_visibility='visible',
-                                    index=options2.index(second_choice) 
-                                    if second_choice in options2 else 0)
+    #second_choice = 'Ganz Kärnten'
+    #second_choice = st.selectbox("Tourismusregion:", 
+    #                                options2, 
+    #                                label_visibility='visible',
+    #                                index=options2.index(second_choice) 
+    #                                if second_choice in options2 else 0)
     
-    selected_jahre: int = st.slider("Startjahr",
+    selected_jahre: int = st.slider("Jahre",
         min_value=START_JAHR,
         max_value=END_JAHR-1,
         value=(2014, END_JAHR),
@@ -64,11 +124,11 @@ with st.sidebar:
     linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
     choosenDiagram = st.selectbox('Grafik', linieBalken, label_visibility='collapsed',  index=linieBalken.index('Balkendiagramm'))
     if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
-        df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+        df = get_data('t_tourismus2.csv', select_start_jahr-1, select_end_jahr, region, sub_region)
         type: str = 'Herkunft'
         waehlenSie = 'Bitte wählen Sie ein Land aus.'
     elif(choosenHerkunftUnterkunft == 'Unterkunftsarten'):
-        df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, first_choice, second_choice)
+        df = get_data('t_tourismus3.csv', select_start_jahr-1, select_end_jahr, region, sub_region)
         type: str = 'Unterkunft'
         waehlenSie = 'Bitte wählen Sie eine Unterkunftsart aus.'
     displayList: list[str] = getList(df, choosenHerkunftUnterkunft)
@@ -96,8 +156,6 @@ with st.sidebar:
             placeholder=waehlenSie
             )
     #####
-
-
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
     st.image("img/logo.png", use_container_width=True)
@@ -111,7 +169,7 @@ with st.sidebar:
 
 
 st.write(f'## Tourismus nach {choosenHerkunftUnterkunft}')
-st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
+st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {sub_region}")
 
 # # # #  GET THE DATA
 #if (choosenHerkunftUnterkunft == 'Herkunftsländern'):
@@ -150,8 +208,6 @@ st.write(f"### Anzahl der {choosenAnkuenfteUebernachtungen} - {second_choice}")
 #        placeholder=waehlenSie
 #        )
 
-
-
 #### SYMBOL LIMIT
 def getSymbolLimit():
     return (len(options))
@@ -172,15 +228,16 @@ else:
     color_map_keys = options
     color_map_values = get_cud_palette()
 
-
 periodeDf = getPeriode(time)
 if (periodeDf == 'SHJ'):
     df = df[df['Tourismushalbjahr'] == periodeDf]
 elif (periodeDf == 'WHJ'):
     df = df[df['Tourismushalbjahr'] == periodeDf]
 selection = alt.selection_point(fields=[type], bind='legend')
-
-df = calcDifference(df, 12*getSymbolLimit())
+if sub_region == 'Alle Tourismusregionen':
+   df = calcDifference(df, 9*12*getSymbolLimit()) 
+else:
+    df = calcDifference(df, 12*getSymbolLimit())
 df = df[df['Jahr'] >= select_start_jahr]
 
 chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
@@ -198,6 +255,8 @@ chart = alt.Chart(df).mark_line().mark_line(size=2).encode(
                               title='Datum'), 
                  alt.Tooltip(f'{type}:N', 
                              title=f'{type}'),
+                alt.Tooltip(f'Tourismusregion:N', 
+                             title='Tourismusregion'),
                  alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
                              title='Anzahl', 
                              format=','),
@@ -239,6 +298,8 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
                     title='Datum'), 
         alt.Tooltip(f'{type}:N', 
                     title=f'{type}'), 
+        alt.Tooltip(f'Tourismusregion:N', 
+                             title='Tourismusregion'),
         alt.Tooltip(f'{choosenAnkuenfteUebernachtungen}:Q', 
                     title='Anzahl', 
                     format=','),
@@ -260,14 +321,21 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
 if (options!=[]):
 #    linieBalken = ['Liniendiagramm', 'Balkendiagramm'] 
 #    choosenDiagram = st.selectbox('Grafik', linieBalken, label_visibility='collapsed',  index=linieBalken.index('Balkendiagramm'))
-    if (choosenDiagram == 'Liniendiagramm'):
-        st.altair_chart(line_chart, use_container_width=True)
-    elif (choosenDiagram == 'Balkendiagramm'):
-        st.altair_chart(stacked_bar_chart, use_container_width=True)
+    if sub_region == 'Alle Tourismusregionen':
+        st.write('Diese Option ist nicht darstellbar.')
+    else:
+        if (choosenDiagram == 'Liniendiagramm'):
+            st.altair_chart(line_chart, use_container_width=True)
+        elif (choosenDiagram == 'Balkendiagramm'):
+            st.altair_chart(stacked_bar_chart, use_container_width=True)
 
+if 'Herkunft' in df.columns:
+    df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismushalbjahr', 'Tourismusregion', 'Herkunft', 'Ankünfte', 'Übernachtungen']]
+elif 'Unterkunft' in df.columns:
+    df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismushalbjahr', 'Tourismusregion', 'Unterkunft', 'Ankünfte', 'Übernachtungen']]
 if (options!=[]):
-    st.write(f"### Gefilterte Daten - {second_choice} nach {choosenHerkunftUnterkunft}")
-    df.drop(columns=['Date'], inplace=True)
+    st.write(f"### Gefilterte Daten - {sub_region} nach {choosenHerkunftUnterkunft}")
+    #df.drop(columns=['Date'], inplace=True)
     if 'Jahr' in df.columns: 
         df['Jahr'] = df['Jahr'].astype(str)
     st.dataframe(df, hide_index=True)
