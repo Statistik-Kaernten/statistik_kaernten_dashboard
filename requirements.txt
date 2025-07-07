@@ -1,13 +1,5 @@
-#bokeh
-#streamlit_bokeh
-#bokeh_sampledata
-#geopandas
-#streamlit-bridge
-#plotly
-#streamlit_js_eval
 pandas
 numpy
-itertools
 altair
 plotly.graph_objects
 pydeck
