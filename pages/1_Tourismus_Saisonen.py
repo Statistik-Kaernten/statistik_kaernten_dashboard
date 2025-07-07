@@ -337,7 +337,7 @@ if 'Jahr' in df.columns and 'MonatId' in df.columns:
     df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismusregion', 'Ankünfte', 'Übernachtungen']]
 else: 
     df = df[['Tourismusjahr', 'Tourismusregion', 'Ankünfte', 'Übernachtungen']]
-
+df = df.rename(columns={'Tourismusjahr': f'{time}', 'MonatId': 'Monat'})
 
 #col1, col2 = st.columns([0.7, 0.3])
 

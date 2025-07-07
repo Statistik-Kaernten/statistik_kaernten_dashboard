@@ -333,6 +333,7 @@ if 'Herkunft' in df.columns:
     df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismushalbjahr', 'Tourismusregion', 'Herkunft', 'Ankünfte', 'Übernachtungen']]
 elif 'Unterkunft' in df.columns:
     df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismushalbjahr', 'Tourismusregion', 'Unterkunft', 'Ankünfte', 'Übernachtungen']]
+df = df.rename(columns={'MonatId': 'Monat'})
 if (options!=[]):
     st.write(f"### Gefilterte Daten - {sub_region} nach {choosenHerkunftUnterkunft}")
     #df.drop(columns=['Date'], inplace=True)
