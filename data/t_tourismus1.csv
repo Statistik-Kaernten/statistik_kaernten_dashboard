@@ -2286,7 +2286,7 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2024;9 ;2023/24;SHJ;Region Villach;78675;275618
 2024;9 ;2023/24;SHJ;Wörthersee/Rosental;47113;174996
 2025;1 ;2024/25;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;45274;203903
-2025;1 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;16738;89155
+2025;1 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;16754;89205
 2025;1 ;2024/25;WHJ;Katschberg/Lieser- und Maltatal;14380;66562
 2025;1 ;2024/25;WHJ;Klopeiner See – Südkärnten/Lavanttal;7554;38153
 2025;1 ;2024/25;WHJ;Kärnten-Mitte;4258;27643
@@ -2295,7 +2295,7 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2025;1 ;2024/25;WHJ;Region Villach;31486;117092
 2025;1 ;2024/25;WHJ;Wörthersee/Rosental;6449;16899
 2025;2 ;2024/25;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;51447;235895
-2025;2 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;23790;118933
+2025;2 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;23794;118945
 2025;2 ;2024/25;WHJ;Katschberg/Lieser- und Maltatal;16558;76621
 2025;2 ;2024/25;WHJ;Klopeiner See – Südkärnten/Lavanttal;8840;42298
 2025;2 ;2024/25;WHJ;Kärnten-Mitte;3883;26743
@@ -2304,7 +2304,7 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2025;2 ;2024/25;WHJ;Region Villach;31171;118004
 2025;2 ;2024/25;WHJ;Wörthersee/Rosental;5886;14282
 2025;3 ;2024/25;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;24280;100970
-2025;3 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;15079;67430
+2025;3 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;15086;67457
 2025;3 ;2024/25;WHJ;Katschberg/Lieser- und Maltatal;10266;42977
 2025;3 ;2024/25;WHJ;Klopeiner See – Südkärnten/Lavanttal;7245;35039
 2025;3 ;2024/25;WHJ;Kärnten-Mitte;4612;28239
@@ -2313,20 +2313,29 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2025;3 ;2024/25;WHJ;Region Villach;24636;83491
 2025;3 ;2024/25;WHJ;Wörthersee/Rosental;8373;19028
 2025;4 ;2024/25;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;15975;51396
-2025;4 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;8193;31031
+2025;4 ;2024/25;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;8197;31043
 2025;4 ;2024/25;WHJ;Katschberg/Lieser- und Maltatal;2058;6561
 2025;4 ;2024/25;WHJ;Klopeiner See – Südkärnten/Lavanttal;10135;40689
 2025;4 ;2024/25;WHJ;Kärnten-Mitte;5614;31464
 2025;4 ;2024/25;WHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;7406;33296
 2025;4 ;2024/25;WHJ;Region Klagenfurt;17787;34312
 2025;4 ;2024/25;WHJ;Region Villach;31555;87955
-2025;4 ;2024/25;WHJ;Wörthersee/Rosental;19974;47914
-2025;5 ;2024/25;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;33146;100772
-2025;5 ;2024/25;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;13742;40560
-2025;5 ;2024/25;SHJ;Katschberg/Lieser- und Maltatal;7143;18627
+2025;4 ;2024/25;WHJ;Wörthersee/Rosental;19983;47961
+2025;5 ;2024/25;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;33204;100956
+2025;5 ;2024/25;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;13751;40518
+2025;5 ;2024/25;SHJ;Katschberg/Lieser- und Maltatal;7157;18854
 2025;5 ;2024/25;SHJ;Klopeiner See – Südkärnten/Lavanttal;20280;133836
-2025;5 ;2024/25;SHJ;Kärnten-Mitte;7824;36686
+2025;5 ;2024/25;SHJ;Kärnten-Mitte;7856;36775
 2025;5 ;2024/25;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;18903;63535
-2025;5 ;2024/25;SHJ;Region Klagenfurt;23980;45356
+2025;5 ;2024/25;SHJ;Region Klagenfurt;24547;46428
 2025;5 ;2024/25;SHJ;Region Villach;62116;176001
-2025;5 ;2024/25;SHJ;Wörthersee/Rosental;42852;128710
+2025;5 ;2024/25;SHJ;Wörthersee/Rosental;43157;129728
+2025;6 ;2024/25;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;71700;259904
+2025;6 ;2024/25;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;35384;98746
+2025;6 ;2024/25;SHJ;Katschberg/Lieser- und Maltatal;21184;73250
+2025;6 ;2024/25;SHJ;Klopeiner See – Südkärnten/Lavanttal;38156;218514
+2025;6 ;2024/25;SHJ;Kärnten-Mitte;10480;44810
+2025;6 ;2024/25;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;48462;198431
+2025;6 ;2024/25;SHJ;Region Klagenfurt;25882;61986
+2025;6 ;2024/25;SHJ;Region Villach;111720;365001
+2025;6 ;2024/25;SHJ;Wörthersee/Rosental;74962;257285
