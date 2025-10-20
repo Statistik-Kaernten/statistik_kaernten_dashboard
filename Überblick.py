@@ -22,7 +22,7 @@ st.markdown(get_custom_css(), unsafe_allow_html=True)
 insert_styling(226, 226, 226, 1, 255, 255, 255, 1)
 
 with st.sidebar:
-    cover_img = ImageOps.expand(Image.open("img/cover_hb.PNG"), border=4, fill='white')
+    cover_img = ImageOps.expand(Image.open("img/cover_hb25.PNG"), border=4, fill='white')
     cover_img = cover_img.resize((289, 429))
     st.image(cover_img)
                
