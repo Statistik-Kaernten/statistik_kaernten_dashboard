@@ -58,7 +58,7 @@ with st.sidebar:
     
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-    st.image("img/logo.png", use_container_width=True)
+    st.image("img/logo.png")
 
     with st.expander("Info"):
         st.write('''
@@ -136,7 +136,7 @@ stacked_bar_chart = alt.Chart(df).mark_bar().encode(
 if (df['Anzahl'].sum() == 0):
     st.write('Nichts zu visualisieren.')
 else:
-    st.altair_chart(stacked_bar_chart, use_container_width=True)
+    st.altair_chart(stacked_bar_chart)
 
 if 'Jahr' in df.columns: 
     df['Jahr'] = df['Jahr'].astype(str)
@@ -149,12 +149,12 @@ col1, col2 = st.columns([0.7, 0.3])
 with col1:
     st.write(f"### Gefilterte Daten")
     df.drop('Veränderung Vorjahr', axis=1, inplace=True)
-    st.dataframe(df, use_container_width=True, hide_index=True)#, column_order=('Jahr', 'Tourismusjahr', 'MonatId', 'Monat', 'Ankünfte', 'Übernachtungen', 'Veränderung Ankünfte', 'Veränderung Übernachtungen'))
+    st.dataframe(df, hide_index=True)#, column_order=('Jahr', 'Tourismusjahr', 'MonatId', 'Monat', 'Ankünfte', 'Übernachtungen', 'Veränderung Ankünfte', 'Veränderung Übernachtungen'))
 with col2:
     st.write(f"### Gemeinden")
     gemeinden = getGemeindeListe(region)
     if(len(gemeinden) != 0):
-        st.dataframe(gemeinden, hide_index=True, use_container_width=True)
+        st.dataframe(gemeinden, hide_index=True)
     else:
         st.write(f"#### {region}")
 

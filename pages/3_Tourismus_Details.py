@@ -82,9 +82,9 @@ chart = pdk.Deck(
 
 with st.sidebar:
     if region != 'Eigene Auswahl':
-        st.pydeck_chart(chart, height=250, use_container_width=True)
+        st.pydeck_chart(chart, height=250)
     else:
-        event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object", height=250, use_container_width=True)
+        event = st.pydeck_chart(chart, on_select="rerun", selection_mode="multi-object", height=250)
         try: 
             for elem in event.selection["objects"]["properties.GKZ"]:
                 gkz_list.append(f'{elem["properties"]["GKZ"]}')
@@ -163,7 +163,7 @@ with st.sidebar:
     #####
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-    st.image("img/logo.png", use_container_width=True)
+    st.image("img/logo.png")
 
     with st.expander("Info"):
         st.write('''
@@ -330,9 +330,9 @@ if (options!=[]):
         st.write('Diese Option ist nicht darstellbar.')
     else:
         if (choosenDiagram == 'Liniendiagramm'):
-            st.altair_chart(line_chart, use_container_width=True)
+            st.altair_chart(line_chart)
         elif (choosenDiagram == 'Balkendiagramm'):
-            st.altair_chart(stacked_bar_chart, use_container_width=True)
+            st.altair_chart(stacked_bar_chart)
 
 if 'Herkunft' in df.columns:
     df = df[['Jahr', 'Tourismusjahr', 'MonatId', 'Tourismushalbjahr', 'Tourismusregion', 'Herkunft', 'Ankünfte', 'Übernachtungen']]

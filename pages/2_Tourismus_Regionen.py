@@ -92,7 +92,7 @@ with st.sidebar:
 
     st.write("<p style='text-align: center;'><em>Quelle: Landesstelle für Statistik.</em></p>", unsafe_allow_html=True)
 
-    st.image("img/logo.png", use_container_width=True)
+    st.image("img/logo.png")
 
     with st.expander("Info"):
         st.write('''
@@ -260,9 +260,9 @@ stacked_bar_chart = alt.Chart(df2).mark_bar().encode(
 )
 
 if selected_diagram == 'Liniendiagramm':
-    st.altair_chart(line_chart, use_container_width=True)
+    st.altair_chart(line_chart)
 elif selected_diagram == 'Balkendiagramm':
-    st.altair_chart(stacked_bar_chart, use_container_width=True)
+    st.altair_chart(stacked_bar_chart)
 else:
     st.write("Bitte Auswahl treffen")
 df2['Jahr'] = df2['Jahr'].astype(str)

@@ -36,7 +36,7 @@ with st.sidebar:
 
 
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
-    st.image("img/logo.png", width=300, use_container_width=False)
+    st.image("img/logo.png", width='stretch')
 
     with st.expander("Info"):
         st.write('''
