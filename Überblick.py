@@ -27,7 +27,7 @@ with st.sidebar:
     st.image(cover_img)
                
     st.markdown("""
-    <a href="https://www.ktn.gv.at/DE/repos/files/ktn.gv.at/Abteilungen/Abt1/Dateien/PDF/Statistik/Publikationen%5fStat/Statistisches%5fHandbuch/Handbuch%5fonline%5fcomp%5fv2.pdf" target="_blank">
+    <a href="https://www.ktn.gv.at/DE/repos/files/ktn.gv.at/Abteilungen/Abt1/Dateien/PDF/Statistik/Publikationen%5fStat/Statistisches%5fHandbuch/Handbuch2025%5f2.pdf" target="_blank">
         <button style="padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">
             Download
         </button>
