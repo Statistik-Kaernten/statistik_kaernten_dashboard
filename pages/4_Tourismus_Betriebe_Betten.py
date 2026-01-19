@@ -21,7 +21,7 @@ def getPeriode(time: str):
     
 # CONSTANTS
 START_JAHR: int = 2008
-END_JAHR: int = 2024
+END_JAHR: int = 2025
 
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
@@ -45,12 +45,15 @@ with st.sidebar:
                             index=options2.index('Ganz Kärnten'),
                             label_visibility='visible')
 
-    selected_unterkunftsart = st.multiselect('Unterkunftsart auswählen:', getList(None, 'Unterkunftsarten'), label_visibility='visible')
+    selected_unterkunftsart = st.multiselect('Unterkunftsart auswählen:', 
+                                             getList(None, 'Unterkunftsarten'), 
+                                             label_visibility='visible',
+                                             placeholder='...')
     
     selected_jahre: int = st.slider("Startjahr",
         min_value=START_JAHR,
         max_value=END_JAHR-1,
-        value=(2014, END_JAHR),
+        value=(2015, END_JAHR),
         step=1)
     
     select_start_jahr: int = selected_jahre[0]
@@ -60,10 +63,10 @@ with st.sidebar:
 
     st.image("img/logo.png")
 
-    with st.expander("Info"):
-        st.write('''
-            Infobox
-        ''')
+    #with st.expander("Info"):
+    #    st.write('''
+    #        Infobox
+    #    ''')
 
 # # # END SIDE BAR # # #
 
