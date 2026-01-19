@@ -94,10 +94,10 @@ with st.sidebar:
 
     st.image("img/logo.png")
 
-    with st.expander("Info"):
-        st.write('''
-            Infobox
-        ''')
+    #with st.expander("Info"):
+    #    st.write('''
+    #        Infobox
+    #    ''')
 
     if selected_anteil_anzahl == 'Anteil':
         diff_type = 'Veränderung Anteil'

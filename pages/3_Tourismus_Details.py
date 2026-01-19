@@ -165,10 +165,10 @@ with st.sidebar:
 
     st.image("img/logo.png")
 
-    with st.expander("Info"):
-        st.write('''
-            Infobox
-        ''')
+    #with st.expander("Info"):
+    #    st.write('''
+    #        Infobox
+    #    ''')
 
 # # # END REGIONS-AUSWAHL # # #
 
