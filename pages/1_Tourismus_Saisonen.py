@@ -32,7 +32,7 @@ def getPeriode(time: str):
     
 # CONSTANTS
 START_JAHR: int = 2004
-END_JAHR: int = 2025
+END_JAHR: int = 2026
 
 #color_palette = get_monthly_color_palette()
 
