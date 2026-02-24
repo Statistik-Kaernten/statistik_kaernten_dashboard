@@ -30,7 +30,7 @@ def getPeriode(time: str):
     
 # CONSTANTS
 START_JAHR: int = 2004
-END_JAHR: int = 2025
+END_JAHR: int = 2026
 
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 

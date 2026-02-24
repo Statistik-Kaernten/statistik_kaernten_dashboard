@@ -13,7 +13,7 @@ insert_styling(255, 255, 255, 1, 70, 195, 159, 1, slider_bg_color='#b7d7ce', tex
 
 # CONSTANTS
 START_JAHR: int = 2003
-END_JAHR: int = 2025
+END_JAHR: int = 2026
 
 bdl_at: list[str] = ['Kärnten', 'Wien', 'Tirol', 'Vorarlberg', 'Steiermark', 'Oberösterreich', 'Niederösterreich', 'Salzburg', 'Burgenland']
 bdl_de: list[str] = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Mitteldeutschland', 'Norddeutschland', 'Nordrhein-Westfalen', 'Ostdeutschland']
