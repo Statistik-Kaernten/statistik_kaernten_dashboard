@@ -3,8 +3,10 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    HOME=/home/appuser \
-    STREAMLIT_CONFIG_DIR=/home/appuser/.streamlit
+    HOME=/tmp \
+    STREAMLIT_CONFIG_DIR=/tmp/.streamlit \
+    XDG_CACHE_HOME=/tmp/.cache \
+    MPLCONFIGDIR=/tmp/matplotlib
 
 RUN useradd -m appuser
 
@@ -18,11 +20,13 @@ RUN pip install --upgrade pip && \
 
 COPY . .
 
-RUN mkdir -p /home/appuser/.streamlit && \
-    chown -R appuser:appuser /home/appuser /app
+RUN mkdir -p /tmp/.streamlit /tmp/.cache /tmp/matplotlib && \
+    cp .streamlit/config.toml /tmp/.streamlit/config.toml && \
+    chown -R appuser:0 /app /home/appuser /tmp/.streamlit /tmp/.cache /tmp/matplotlib && \
+    chmod -R g=u /app /home/appuser /tmp/.streamlit /tmp/.cache /tmp/matplotlib
 
 USER appuser
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "Überblick.py", "--server.address=0.0.0.0", "--server.port=8501"]
+CMD ["sh", "-c", "streamlit run Überblick.py --server.address=0.0.0.0 --server.port=${PORT:-8501}"]
