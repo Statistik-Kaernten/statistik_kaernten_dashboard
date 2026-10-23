@@ -16757,7 +16757,11 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. Betr. 3*;4705;21999
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. Betr. 5*/4*/4* S;2039;6800
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. FEWO;1856;8931
+<<<<<<< HEAD
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Priv. FEWO;1845;11202
+=======
+2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Priv. FEWO;1845;11260
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Privatquartiere;360;1297
 2026;3 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Sonstige inkl. Camping;1420;6650
 2026;3 ;Katschberg/Lieser- und Maltatal;2025/26;WHJ;Gew. Betr. 2/1*;51;111
@@ -16811,7 +16815,11 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;3 ;Wörthersee/Rosental;2025/26;WHJ;Sonstige inkl. Camping;573;1210
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Gew. Betr. 2/1*;366;1448
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Gew. Betr. 3*;3792;9679
+<<<<<<< HEAD
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Gew. Betr. 5*/4*/4* S;6670;19618
+=======
+2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Gew. Betr. 5*/4*/4* S;6643;19586
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Gew. FEWO;902;4418
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Priv. FEWO;1173;5520
 2026;4 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;WHJ;Privatquartiere;156;938
@@ -16820,8 +16828,13 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. Betr. 3*;1886;6822
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. Betr. 5*/4*/4* S;780;2711
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Gew. FEWO;1073;4361
+<<<<<<< HEAD
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Priv. FEWO;1287;6452
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Privatquartiere;320;1302
+=======
+2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Priv. FEWO;1287;6512
+2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Privatquartiere;316;1277
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;4 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;WHJ;Sonstige inkl. Camping;1072;3845
 2026;4 ;Katschberg/Lieser- und Maltatal;2025/26;WHJ;Gew. Betr. 2/1*;58;97
 2026;4 ;Katschberg/Lieser- und Maltatal;2025/26;WHJ;Gew. Betr. 3*;640;1792
@@ -16874,6 +16887,7 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;4 ;Wörthersee/Rosental;2025/26;WHJ;Sonstige inkl. Camping;2119;4266
 2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 2/1*;1472;5046
 2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 3*;11435;27341
+<<<<<<< HEAD
 2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;14075;38096
 2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;5054;17812
 2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;2921;11606
@@ -16890,6 +16904,24 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;2746;5979
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;4318;15311
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;1135;4172
+=======
+2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;14047;38057
+2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;5054;17812
+2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;2918;11604
+2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Privatquartiere;568;2012
+2026;5 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Sonstige inkl. Camping;8766;30729
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 2/1*;1104;2119
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 3*;6249;13717
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;1567;4039
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. FEWO;1401;3756
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Priv. FEWO;1723;7191
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Privatquartiere;724;1958
+2026;5 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Sonstige inkl. Camping;4294;12414
+2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 2/1*;214;370
+2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;2746;5979
+2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;4318;15311
+2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;1086;4102
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Priv. FEWO;750;2511
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Privatquartiere;136;249
 2026;5 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Sonstige inkl. Camping;1730;4235
@@ -16935,6 +16967,7 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;5 ;Wörthersee/Rosental;2025/26;SHJ;Priv. FEWO;3933;14924
 2026;5 ;Wörthersee/Rosental;2025/26;SHJ;Privatquartiere;752;3002
 2026;5 ;Wörthersee/Rosental;2025/26;SHJ;Sonstige inkl. Camping;8548;35438
+<<<<<<< HEAD
 2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 2/1*;2346;6491
 2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 3*;18187;47085
 2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;21531;69514
@@ -16953,6 +16986,26 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;4273;8535
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;6567;30663
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;1368;6751
+=======
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 2/1*;2346;6687
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 3*;18187;47085
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;21468;69419
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;7707;31965
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;5381;25370
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Privatquartiere;1149;4413
+2026;6 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Sonstige inkl. Camping;14389;60935
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 2/1*;2149;3533
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 3*;11546;27298
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;3012;7668
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. FEWO;2691;7093
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Priv. FEWO;2461;12616
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Privatquartiere;1191;3443
+2026;6 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Sonstige inkl. Camping;10847;31152
+2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 2/1*;300;590
+2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;4273;8535
+2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;6567;30663
+2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;1315;6680
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Priv. FEWO;985;3885
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Privatquartiere;297;536
 2026;6 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Sonstige inkl. Camping;2737;7186
@@ -17000,6 +17053,7 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;6 ;Wörthersee/Rosental;2025/26;SHJ;Sonstige inkl. Camping;11577;60080
 2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 2/1*;2779;9387
 2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 3*;23092;71375
+<<<<<<< HEAD
 2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;26242;99925
 2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;11817;62490
 2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;10958;65274
@@ -17017,6 +17071,25 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;8850;44913
 2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;2737;17267
 2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Priv. FEWO;2247;9994
+=======
+2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;26098;99696
+2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;11783;62307
+2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;10957;65256
+2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Privatquartiere;2187;8567
+2026;7 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Sonstige inkl. Camping;24239;122830
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 2/1*;3357;6018
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 3*;15126;38572
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;4087;12734
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. FEWO;5379;20172
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Priv. FEWO;5314;31583
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Privatquartiere;2269;7637
+2026;7 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Sonstige inkl. Camping;26239;88612
+2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 2/1*;713;1737
+2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;7383;14424
+2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;8850;44913
+2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;2643;17123
+2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Priv. FEWO;2100;9818
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Privatquartiere;747;1744
 2026;7 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Sonstige inkl. Camping;7026;21972
 2026;7 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Gew. Betr. 2/1*;3431;12597
@@ -17054,6 +17127,7 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;7 ;Region Villach;2025/26;SHJ;Priv. FEWO;12489;66380
 2026;7 ;Region Villach;2025/26;SHJ;Privatquartiere;3166;12211
 2026;7 ;Region Villach;2025/26;SHJ;Sonstige inkl. Camping;61249;284558
+<<<<<<< HEAD
 2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 2/1*;8392;26010
 2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 3*;23287;71176
 2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;30555;110902
@@ -17089,11 +17163,52 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Priv. FEWO;4126;27812
 2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Privatquartiere;1517;5265
 2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Sonstige inkl. Camping;10326;121376
+=======
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 2/1*;8057;25504
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 3*;23298;71430
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;30541;110839
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Gew. FEWO;6548;35538
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Priv. FEWO;8871;47394
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Privatquartiere;2088;10467
+2026;7 ;Wörthersee/Rosental;2025/26;SHJ;Sonstige inkl. Camping;19238;102833
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 2/1*;2868;10602
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 3*;24835;81855
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;30120;118561
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Gew. FEWO;12566;64947
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Priv. FEWO;12156;76659
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Privatquartiere;2464;10577
+2026;8 ;Bad Kleinkirchheim/Millstätter See/Nockberge;2025/26;SHJ;Sonstige inkl. Camping;26740;139326
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 2/1*;3483;6879
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 3*;16328;44002
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;4907;15546
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Gew. FEWO;5728;21967
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Priv. FEWO;5574;36090
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Privatquartiere;2213;8198
+2026;8 ;Hohe Tauern – die Nationalpark Region in Kärnten;2025/26;SHJ;Sonstige inkl. Camping;26462;92001
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 2/1*;508;1722
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 3*;7442;15897
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;10859;52105
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Gew. FEWO;2928;18123
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Priv. FEWO;2151;10518
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Privatquartiere;777;1836
+2026;8 ;Katschberg/Lieser- und Maltatal;2025/26;SHJ;Sonstige inkl. Camping;6254;21952
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Gew. Betr. 2/1*;3800;13366
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Gew. Betr. 3*;15833;53308
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;12458;57893
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Gew. FEWO;7999;49246
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Priv. FEWO;4109;27793
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Privatquartiere;1519;5348
+2026;8 ;Klopeiner See – Südkärnten/Lavanttal;2025/26;SHJ;Sonstige inkl. Camping;10339;121343
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Gew. Betr. 2/1*;239;918
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Gew. Betr. 3*;2779;8745
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;5007;12561
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Gew. FEWO;1884;12545
+<<<<<<< HEAD
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Priv. FEWO;2140;14754
+=======
+2026;8 ;Kärnten-Mitte;2025/26;SHJ;Priv. FEWO;2140;14729
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Privatquartiere;847;3177
 2026;8 ;Kärnten-Mitte;2025/26;SHJ;Sonstige inkl. Camping;1474;20983
 2026;8 ;Nassfeld – Pressegger See/Lesachtal/Weissensee;2025/26;SHJ;Gew. Betr. 2/1*;2504;11130
@@ -17104,12 +17219,21 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;8 ;Nassfeld – Pressegger See/Lesachtal/Weissensee;2025/26;SHJ;Privatquartiere;1961;10617
 2026;8 ;Nassfeld – Pressegger See/Lesachtal/Weissensee;2025/26;SHJ;Sonstige inkl. Camping;19653;99836
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. Betr. 2/1*;670;1762
+<<<<<<< HEAD
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. Betr. 3*;11675;21589
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;13447;26053
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. FEWO;3100;8690
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Priv. FEWO;1478;6254
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Privatquartiere;929;4256
 2026;8 ;Region Klagenfurt;2025/26;SHJ;Sonstige inkl. Camping;10174;29609
+=======
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. Betr. 3*;11665;21579
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;13445;26051
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Gew. FEWO;2976;8335
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Priv. FEWO;1459;6212
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Privatquartiere;917;4239
+2026;8 ;Region Klagenfurt;2025/26;SHJ;Sonstige inkl. Camping;10172;29603
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;8 ;Region Villach;2025/26;SHJ;Gew. Betr. 2/1*;10612;21302
 2026;8 ;Region Villach;2025/26;SHJ;Gew. Betr. 3*;23825;64108
 2026;8 ;Region Villach;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;30641;100592
@@ -17117,6 +17241,7 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;8 ;Region Villach;2025/26;SHJ;Priv. FEWO;13195;73776
 2026;8 ;Region Villach;2025/26;SHJ;Privatquartiere;3536;12854
 2026;8 ;Region Villach;2025/26;SHJ;Sonstige inkl. Camping;64031;304697
+<<<<<<< HEAD
 2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 2/1*;8593;26782
 2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 3*;24121;78342
 2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;32149;122071
@@ -17187,3 +17312,12 @@ jahr;monat;tourismusregion;tourismusjahr;tourismushalbjahr;unterkunft_6;ankuenft
 2026;9 ;Wörthersee/Rosental;2025/26;SHJ;Priv. FEWO;3742;17327
 2026;9 ;Wörthersee/Rosental;2025/26;SHJ;Privatquartiere;736;4371
 2026;9 ;Wörthersee/Rosental;2025/26;SHJ;Sonstige inkl. Camping;7465;37364
+=======
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 2/1*;8486;26361
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 3*;24114;78774
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. Betr. 5*/4*/4* S;32074;121818
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Gew. FEWO;6851;37634
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Priv. FEWO;8859;50290
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Privatquartiere;2011;11085
+2026;8 ;Wörthersee/Rosental;2025/26;SHJ;Sonstige inkl. Camping;19465;108827
+>>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
