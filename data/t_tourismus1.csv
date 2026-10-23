@@ -2411,13 +2411,8 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2026;2 ;2025/26;WHJ;Region Klagenfurt;11656;20414
 2026;2 ;2025/26;WHJ;Region Villach;37896;146745
 2026;2 ;2025/26;WHJ;Wörthersee/Rosental;7101;18454
-<<<<<<< HEAD
 2026;3 ;2025/26;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;23489;93379
 2026;3 ;2025/26;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;12752;59732
-=======
-2026;3 ;2025/26;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;23468;93323
-2026;3 ;2025/26;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;12746;59846
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;3 ;2025/26;WHJ;Katschberg/Lieser- und Maltatal;9999;42981
 2026;3 ;2025/26;WHJ;Klopeiner See – Südkärnten/Lavanttal;8910;38998
 2026;3 ;2025/26;WHJ;Kärnten-Mitte;4372;28999
@@ -2425,13 +2420,8 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2026;3 ;2025/26;WHJ;Region Klagenfurt;15499;28189
 2026;3 ;2025/26;WHJ;Region Villach;28373;90173
 2026;3 ;2025/26;WHJ;Wörthersee/Rosental;9497;22104
-<<<<<<< HEAD
 2026;4 ;2025/26;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;15887;51626
 2026;4 ;2025/26;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;6862;26664
-=======
-2026;4 ;2025/26;WHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;15860;51592
-2026;4 ;2025/26;WHJ;Hohe Tauern – die Nationalpark Region in Kärnten;6815;26714
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;4 ;2025/26;WHJ;Katschberg/Lieser- und Maltatal;2638;10393
 2026;4 ;2025/26;WHJ;Klopeiner See – Südkärnten/Lavanttal;11195;44334
 2026;4 ;2025/26;WHJ;Kärnten-Mitte;5343;28814
@@ -2439,51 +2429,32 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2026;4 ;2025/26;WHJ;Region Klagenfurt;17962;34695
 2026;4 ;2025/26;WHJ;Region Villach;31680;94356
 2026;4 ;2025/26;WHJ;Wörthersee/Rosental;20810;47320
-<<<<<<< HEAD
 2026;5 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;44294;132651
 2026;5 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;17145;45165
 2026;5 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;11029;32827
-=======
-2026;5 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;44260;132601
-2026;5 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;17062;45194
-2026;5 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;10980;32757
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;5 ;2025/26;SHJ;Klopeiner See – Südkärnten/Lavanttal;22713;133363
 2026;5 ;2025/26;SHJ;Kärnten-Mitte;7662;36703
 2026;5 ;2025/26;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;23767;80917
 2026;5 ;2025/26;SHJ;Region Klagenfurt;25605;45739
 2026;5 ;2025/26;SHJ;Region Villach;79153;224281
 2026;5 ;2025/26;SHJ;Wörthersee/Rosental;56070;164377
-<<<<<<< HEAD
 2026;6 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;71344;247251
 2026;6 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;34001;92797
 2026;6 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;16527;58146
-=======
-2026;6 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;70627;245874
-2026;6 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;33897;92803
-2026;6 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;16474;58075
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;6 ;2025/26;SHJ;Klopeiner See – Südkärnten/Lavanttal;34246;201879
 2026;6 ;2025/26;SHJ;Kärnten-Mitte;10263;43578
 2026;6 ;2025/26;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;43789;185400
 2026;6 ;2025/26;SHJ;Region Klagenfurt;30738;72633
 2026;6 ;2025/26;SHJ;Region Villach;107367;349294
 2026;6 ;2025/26;SHJ;Wörthersee/Rosental;70728;252040
-<<<<<<< HEAD
 2026;7 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;101389;439975
 2026;7 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;62057;205548
 2026;7 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;29703;112051
-=======
-2026;7 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;101135;439418
-2026;7 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;61771;205328
-2026;7 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;29462;111731
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
 2026;7 ;2025/26;SHJ;Klopeiner See – Südkärnten/Lavanttal;51042;304079
 2026;7 ;2025/26;SHJ;Kärnten-Mitte;13529;66445
 2026;7 ;2025/26;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;74688;393054
 2026;7 ;2025/26;SHJ;Region Klagenfurt;40964;89628
 2026;7 ;2025/26;SHJ;Region Villach;156995;610224
-<<<<<<< HEAD
 2026;7 ;2025/26;SHJ;Wörthersee/Rosental;99086;404391
 2026;8 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;111785;502668
 2026;8 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;65139;225400
@@ -2503,15 +2474,3 @@ jahr;monat;tourismusjahr;tourismushalbjahr;tourismusregion;ankuenfte;uebernachtu
 2026;9 ;2025/26;SHJ;Region Klagenfurt;27929;58181
 2026;9 ;2025/26;SHJ;Region Villach;95681;329803
 2026;9 ;2025/26;SHJ;Wörthersee/Rosental;55404;193474
-=======
-2026;7 ;2025/26;SHJ;Wörthersee/Rosental;98641;404005
-2026;8 ;2025/26;SHJ;Bad Kleinkirchheim/Millstätter See/Nockberge;111749;502527
-2026;8 ;2025/26;SHJ;Hohe Tauern – die Nationalpark Region in Kärnten;64695;224683
-2026;8 ;2025/26;SHJ;Katschberg/Lieser- und Maltatal;30919;122153
-2026;8 ;2025/26;SHJ;Klopeiner See – Südkärnten/Lavanttal;56057;328297
-2026;8 ;2025/26;SHJ;Kärnten-Mitte;14370;73658
-2026;8 ;2025/26;SHJ;Nassfeld – Pressegger See/Lesachtal/Weissensee;83411;442112
-2026;8 ;2025/26;SHJ;Region Klagenfurt;41304;97781
-2026;8 ;2025/26;SHJ;Region Villach;165024;665198
-2026;8 ;2025/26;SHJ;Wörthersee/Rosental;101860;434789
->>>>>>> 9ce3dbb981c30fd1a5ccf1e68241ed1944a17571
